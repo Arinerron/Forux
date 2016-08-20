@@ -2,12 +2,12 @@ package com.arinerron.forux.core;
 
 import java.awt.Graphics;
 
-public abstract class FScreen {
-    private FWindow window = null;
+public abstract class Screen {
+    private Window window = null;
     private int id = -1;
     private boolean active = false;
     
-    public FScreen(FWindow window) {
+    public Screen(Window window) {
         this.window = window;
     }
     
@@ -20,15 +20,15 @@ public abstract class FScreen {
         this.active = active;
     }
     
-    public FWindow getWindow() {
+    public Window getWindow() {
         return this.window;
     }
     
-    public FGame getGame() {
+    public Game getGame() {
         return this.getWindow().getGame();
     }
     
-    public FClock getClock() {
+    public Clock getClock() {
         return this.getGame().getClock();
     }
     

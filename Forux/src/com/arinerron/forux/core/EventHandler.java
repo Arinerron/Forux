@@ -3,25 +3,25 @@ package com.arinerron.forux.core;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.arinerron.forux.events.FEventListener;
+import com.arinerron.forux.events.EventListener;
 
-public class FEventHandler {
-    private FGame game = null;
-    private List<FEventListener> eventListeners = new ArrayList<>(); 
+public class EventHandler {
+    private Game game = null;
+    private List<EventListener> eventListeners = new ArrayList<>(); 
     
-    public FEventHandler(FGame game) {
+    public EventHandler(Game game) {
         this.game = game;
     }
     
-    public FGame getGame() {
+    public Game getGame() {
         return this.game;
     }
     
-    public List<FEventListener> getEventListeners() {
+    public List<EventListener> getEventListeners() {
         return this.eventListeners;
     }
     
-    public boolean registerListener(FEventListener eventListener) {
+    public boolean registerListener(EventListener eventListener) {
         if(!this.getEventListeners().contains(eventListener))
             this.eventListeners.add(eventListener);
         else
@@ -29,7 +29,7 @@ public class FEventHandler {
         return true;
     }
     
-    public boolean unregisterListener(FEventListener eventListener) {
+    public boolean unregisterListener(EventListener eventListener) {
         if(this.getEventListeners().contains(eventListener))
             this.eventListeners.remove(eventListener);
         else
@@ -41,24 +41,24 @@ public class FEventHandler {
         this.eventListeners.clear();
     }
     
-    public boolean isRegistered(FEventListener eventListener) {
+    public boolean isRegistered(EventListener eventListener) {
         return this.getEventListeners().contains(eventListener);
     }
     
     // Event Listener functions
     
     public void onGameStart() {
-        for(FEventListener eventListener : this.getEventListeners())
+        for(EventListener eventListener : this.getEventListeners())
             eventListener.onGameStart();
     }
     
     public void onGameStop() {
-        for(FEventListener eventListener : this.getEventListeners())
+        for(EventListener eventListener : this.getEventListeners())
             eventListener.onGameStop();
     }
     
-    public void onScreenSet(FScreen screen) {
-        for(FEventListener eventListener : this.getEventListeners())
+    public void onScreenSet(Screen screen) {
+        for(EventListener eventListener : this.getEventListeners())
             eventListener.onScreenSet(screen);
     }
 }

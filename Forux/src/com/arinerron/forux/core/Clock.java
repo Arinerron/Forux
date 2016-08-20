@@ -1,15 +1,25 @@
 package com.arinerron.forux.core;
 
-public class FClock {
-    private FGame game = null;
+import java.util.Timer;
+
+public class Clock {
+    private Game game = null;
     private int ticks = 0;
     private int index = 0;
+    private Timer timer = new Timer();
     
-    public FClock(FGame game) {
+    public Clock(Game game) {
         this.game = game;
     }
     
-    public FGame getGame() {
+    protected void start() {
+        
+        timer.schedule(new TimerTask() {
+            
+        }, delay);
+    }
+    
+    public Game getGame() {
         return this.game;
     }
     

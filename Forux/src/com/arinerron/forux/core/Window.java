@@ -6,20 +6,20 @@ import java.util.List;
 
 import javax.swing.JFrame;
 
-public class FWindow {
-    private FGame game = null;
+public class Window {
+    private Game game = null;
     protected JFrame frame = null;
-    private List<FScreen> screens = new ArrayList<>();
+    private List<Screen> screens = new ArrayList<>();
     private int currentScreen = -1;
     
-    public FWindow(FGame game) {
+    public Window(Game game) {
         this.game = game;
         
         this.frame = new JFrame(this.getGame().getName());
         this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
     
-    public FGame getGame() {
+    public Game getGame() {
         return this.game;
     }
     
@@ -38,7 +38,7 @@ public class FWindow {
             this.frame.setExtendedState(JFrame.NORMAL);
     }
     
-    public boolean addScreen(FScreen screen) {
+    public boolean addScreen(Screen screen) {
         if(!this.getScreens().contains(screen)) {
             screen.setID(this.getScreens().size());
             this.screens.add(screen);
@@ -48,7 +48,7 @@ public class FWindow {
         return false;
     }
     
-    public boolean removeScreen(FScreen screen) {
+    public boolean removeScreen(Screen screen) {
         if(this.getScreens().contains(screen)) {
             this.screens.remove(screen);
             return true;
@@ -58,8 +58,8 @@ public class FWindow {
     }
     
     public boolean removeScreen(int id) {
-        FScreen remove = null;
-        for(FScreen screen : this.getScreens())
+        Screen remove = null;
+        for(Screen screen : this.getScreens())
             if(screen.getID() == id)
                 remove = screen;
         
@@ -77,11 +77,11 @@ public class FWindow {
      * 
      */
     
-    public FScreen getCurrentScreen() {
+    public Screen getCurrentScreen() {
         return this.getScreens().get(this.currentScreen);
     }
     
-    public boolean setCurrentScreen(FScreen screen) {
+    public boolean setCurrentScreen(Screen screen) {
         return setCurrentScreen(screen.getID());
     }
     
@@ -107,7 +107,7 @@ public class FWindow {
         return this.frame.getExtendedState() == JFrame.MAXIMIZED_BOTH;
     }
     
-    public List<FScreen> getScreens() {
+    public List<Screen> getScreens() {
         return this.screens;
     }
 }

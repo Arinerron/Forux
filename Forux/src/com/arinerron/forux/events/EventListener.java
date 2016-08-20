@@ -1,13 +1,13 @@
 package com.arinerron.forux.events;
 
-import com.arinerron.forux.core.FEventHandler;
-import com.arinerron.forux.core.FGame;
-import com.arinerron.forux.core.FScreen;
+import com.arinerron.forux.core.EventHandler;
+import com.arinerron.forux.core.Game;
+import com.arinerron.forux.core.Screen;
 
-public class FEventListener {
-    private FGame game = null;
+public class EventListener {
+    private Game game = null;
     
-    public FEventListener(FGame game) {
+    public EventListener(Game game) {
         this.game = game;
         this.registerEvent();
     }
@@ -24,15 +24,15 @@ public class FEventListener {
         return this.getGame().getEventHandler().isRegistered(this);
     }
     
-    public FGame getGame() {
+    public Game getGame() {
         return this.game;
     }
     
-    public FEventHandler getEventHandler() {
+    public EventHandler getEventHandler() {
         return this.getGame().getEventHandler();
     }
     
     public void onGameStart() {}
     public void onGameStop() {}
-    public void onScreenSet(FScreen screen) {}
+    public void onScreenSet(Screen screen) {}
 }
