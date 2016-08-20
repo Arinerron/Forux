@@ -6,7 +6,8 @@ public class Game {
     
     private Window window = null;
     private Clock clock = null;
-    private EventHandler eventHandler = new EventHandler(this);
+    private EventHandler eventHandler = null;
+    private Settings settings = null;
     private boolean running = false;
     
     public Game(String name, String version) {
@@ -15,6 +16,8 @@ public class Game {
         
         this.window = new Window(this);
         this.clock = new Clock(this);
+        this.eventHandler = new EventHandler(this);
+        this.settings = new Settings(this);
     }
     
     public void start() {
@@ -48,6 +51,10 @@ public class Game {
 
     public EventHandler getEventHandler() {
         return this.eventHandler;
+    }
+    
+    public Settings getSettings() {
+        return this.settings;
     }
     
     public boolean isRunning() {
