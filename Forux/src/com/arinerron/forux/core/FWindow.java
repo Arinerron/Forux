@@ -71,6 +71,12 @@ public class FWindow {
         return false;
     }
     
+    /* 
+     * Later:
+     * public void getScreen(int id);
+     * 
+     */
+    
     public FScreen getCurrentScreen() {
         return this.getScreens().get(this.currentScreen);
     }
