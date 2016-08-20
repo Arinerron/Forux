@@ -6,6 +6,7 @@ public class FGame {
     
     private FWindow window = null;
     private FClock clock = null;
+    private FEventHandler eventHandler = new FEventHandler(this);
     
     public FGame(String name, String version) {
         this.name = name;
@@ -29,5 +30,9 @@ public class FGame {
     
     public FClock getClock() {
         return this.clock;
+    }
+
+    public FEventHandler getEventHandler() {
+        return this.eventHandler;
     }
 }
