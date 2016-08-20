@@ -1,1 +1,2 @@
 language: java
+script: cd Forux/src/ && javac /com/arinerron/forux/core/FGame.java
