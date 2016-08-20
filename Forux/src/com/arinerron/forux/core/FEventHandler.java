@@ -5,7 +5,7 @@ import java.util.List;
 
 import com.arinerron.forux.events.FEventListener;
 
-public class FEventHandler {}}
+public class FEventHandler {
     private FGame game = null;
     private List<FEventListener> eventListeners = new ArrayList<>(); 
     
