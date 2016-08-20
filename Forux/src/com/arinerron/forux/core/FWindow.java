@@ -10,6 +10,7 @@ public class FWindow {
     private FGame game = null;
     protected JFrame frame = null;
     private List<FScreen> screens = new ArrayList<>();
+    private int currentScreen = -1;
     
     public FWindow(FGame game) {
         this.game = game;
@@ -37,9 +38,55 @@ public class FWindow {
             this.frame.setExtendedState(JFrame.NORMAL);
     }
     
-    public void addScreen(FScreen screen) {
-        screen.setID(this.getScreens().size());
-        this.screens.add(screen);
+    public boolean addScreen(FScreen screen) {
+        if(!this.getScreens().contains(screen)) {
+            screen.setID(this.getScreens().size());
+            this.screens.add(screen);
+            return true;
+        }
+        
+        return false;
+    }
+    
+    public boolean removeScreen(FScreen screen) {
+        if(this.getScreens().contains(screen)) {
+            this.screens.remove(screen);
+            return true;
+        }
+        
+        return false;
+    }
+    
+    public boolean removeScreen(int id) {
+        FScreen remove = null;
+        for(FScreen screen : this.getScreens())
+            if(screen.getID() == id)
+                remove = screen;
+        
+        if(remove != null) {
+            this.screens.remove(remove);
+            return true;
+        }
+        
+        return false;
+    }
+    
+    public FScreen getCurrentScreen() {
+        return this.getScreens().get(this.currentScreen);
+    }
+    
+    public boolean setCurrentScreen(FScreen screen) {
+        return setCurrentScreen(screen.getID());
+    }
+    
+    public boolean setCurrentScreen(int id) {
+        for(int i = 0; i < this.getScreens().size(); i++)
+            if(this.getScreens().get(i).getID() == id) {
+                this.setCurrentScreen(i);
+                return true;
+            }
+        
+        return false;
     }
     
     public boolean isVisible() { 
