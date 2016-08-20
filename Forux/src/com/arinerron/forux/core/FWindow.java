@@ -1,5 +1,6 @@
 package com.arinerron.forux.core;
 
+import java.awt.Dimension;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,5 +35,26 @@ public class FWindow {
             this.frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
         else
             this.frame.setExtendedState(JFrame.NORMAL);
+    }
+    
+    public void addScreen(FScreen screen) {
+        screen.setID(this.getScreens().size());
+        this.screens.add(screen);
+    }
+    
+    public boolean isVisible() { 
+        return this.frame.isVisible();
+    }
+    
+    public Dimension getSize() {
+        return this.frame.getSize();
+    }
+    
+    public boolean isFullscreen() {
+        return this.frame.getExtendedState() == JFrame.MAXIMIZED_BOTH;
+    }
+    
+    public List<FScreen> getScreens() {
+        return this.screens;
     }
 }
