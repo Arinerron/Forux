@@ -1,2 +1,2 @@
 language: java
-script: cd Forux/src/ && ls && javac com/arinerron/forux/core/FGame.java
+script: cd Forux/src/ && ls && javac com/arinerron/forux/core/Game.java
