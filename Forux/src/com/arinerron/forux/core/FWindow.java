@@ -1,11 +1,14 @@
 package com.arinerron.forux.core;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.swing.JFrame;
 
 public class FWindow {
 	private FGame game = null;
 	protected JFrame frame = null;
-	private List<>
+	private List<FScreen> screens = new ArrayList<>();
 	
 	public FWindow(FGame game) {
 		this.game = game;
