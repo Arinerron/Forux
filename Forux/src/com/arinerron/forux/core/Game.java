@@ -17,11 +17,11 @@ public class Game {
         this.name = name;
         this.version = version;
         
-        this.window = new Window(this);
-        this.clock = new Clock(this);
         this.eventHandler = new EventHandler(this);
         this.settings = new Settings(this);
         this.logger = new Logger(this);
+        this.window = new Window(this);
+        this.clock = new Clock(this);
         
         Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
             @Override 

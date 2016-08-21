@@ -30,7 +30,7 @@ public class Clock {
                         Clock.this.timer = new Timer(); // reset game clock
                     }
             }
-        }, delay, 0); // may be incorrect order
+        }, delay, delay);
     }
     
     private void update() {
