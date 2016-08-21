@@ -60,9 +60,11 @@ public class Window {
         return this.game;
     }
     
-    public void setVisible(boolean visible) {
-        if(this.getGame().isRunning())
-            this.frame.setVisible(visible);
+    public void setVisible(boolean visible) { // will start game if !running
+        if(!this.getGame().isRunning())
+            this.getGame().start();
+
+        this.frame.setVisible(visible);
     }
     
     public void setSize(int width, int height) {
@@ -124,7 +126,6 @@ public class Window {
     /* 
      * Later:
      * public void getScreen(int id);
-     * public void removeScreen(int id);
      * 
      */
     
