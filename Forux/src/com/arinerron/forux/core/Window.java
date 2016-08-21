@@ -15,6 +15,7 @@ public class Window {
     private List<Screen> screens = new ArrayList<>();
     private Dimension frameSize = new Dimension(20, 20);
     private BufferedImage image = null;
+    private int fps = ((1000 / this.getGame().getSettings().getInt("max_fps")));
     
     private int currentScreen = -1;
     
@@ -23,7 +24,6 @@ public class Window {
         
         this.frame = new JFrame(this.getGame().getName());
         this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        int fps = ((1000 / this.getGame().getSettings().getInt("max_fps")));
         this.frame.add(new JPanel() {
             @Override
             public void paintComponent(Graphics g) {
@@ -33,7 +33,7 @@ public class Window {
                 try {
                     Thread.sleep(fps);
                 } catch(Exception e) {
-                    // this.getGame().getLogger().error(e); // later add this
+                    Window.this.getGame().getLogger().error(e); // later add this
                 }
                 
                 if(Window.this.getGame().isRunning())

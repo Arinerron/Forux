@@ -4,7 +4,7 @@ import com.arinerron.forux.core.EventHandler;
 import com.arinerron.forux.core.Game;
 import com.arinerron.forux.core.Screen;
 
-public class EventListener {
+public abstract class EventListener {
     private Game game = null;
     
     public EventListener(Game game) {
@@ -32,7 +32,8 @@ public class EventListener {
         return this.getGame().getEventHandler();
     }
     
-    public void onGameStart() {}
-    public void onGameStop() {}
-    public void onScreenSet(Screen screen) {}
+    public abstract void onGameStart();
+    public abstract void onGameStop();
+    public abstract void onGameError(String message);
+    public abstract void onScreenSet(Screen screen);
 }

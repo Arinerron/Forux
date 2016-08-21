@@ -8,6 +8,7 @@ public class Game {
     private Clock clock = null;
     private EventHandler eventHandler = null;
     private Settings settings = null;
+    private Logger logger = null;
     
     private boolean running = false;
     private boolean paused = false;
@@ -20,6 +21,15 @@ public class Game {
         this.clock = new Clock(this);
         this.eventHandler = new EventHandler(this);
         this.settings = new Settings(this);
+        this.logger = new Logger(this);
+        
+        Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
+            @Override 
+            public void run() {
+                Game.this.getEventHandler().onGameStop();
+            }
+        }));
+        
     }
     
     public void start() {
@@ -29,6 +39,7 @@ public class Game {
             
             this.getWindow().setVisible(true);
             this.getClock().start();
+            this.getEventHandler().onGameStart();
         }
     }
     
@@ -62,6 +73,10 @@ public class Game {
     
     public Settings getSettings() {
         return this.settings;
+    }
+    
+    public Logger getLogger() {
+        return this.logger;
     }
     
     public boolean isRunning() {
