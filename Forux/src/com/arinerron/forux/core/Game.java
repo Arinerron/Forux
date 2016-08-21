@@ -8,7 +8,9 @@ public class Game {
     private Clock clock = null;
     private EventHandler eventHandler = null;
     private Settings settings = null;
+    
     private boolean running = false;
+    private boolean paused = false;
     
     public Game(String name, String version) {
         this.name = name;
@@ -23,6 +25,7 @@ public class Game {
     public void start() {
         if(!this.isRunning()) {
             this.setRunning(true);
+            this.setPaused(false);
             
             this.getWindow().setVisible(true);
             this.getClock().start();
@@ -31,6 +34,10 @@ public class Game {
     
     public void setRunning(boolean running) {
         this.running = running;
+    }
+    
+    public void setPaused(boolean paused) {
+        this.paused = paused;
     }
     
     public String getName() {
@@ -59,5 +66,9 @@ public class Game {
     
     public boolean isRunning() {
         return this.running;
+    }
+    
+    public boolean isPaused() {
+        return this.paused;
     }
 }

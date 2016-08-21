@@ -1,6 +1,7 @@
 package com.arinerron.forux.core;
 
 import java.awt.Dimension;
+import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,6 +11,8 @@ public class Window {
     private Game game = null;
     protected JFrame frame = null;
     private List<Screen> screens = new ArrayList<>();
+    private Dimension frameSize = new Dimension(20, 20);
+    
     private int currentScreen = -1;
     
     public Window(Game game) {
@@ -17,6 +20,15 @@ public class Window {
         
         this.frame = new JFrame(this.getGame().getName());
         this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        
+        Screen screen = new Screen(this) {
+            public void onDraw(Graphics g) {}
+            public void onStart() {}
+            public void onStop() {}
+        };
+        
+        this.addScreen(screen);
+        this.setCurrentScreen(screen); // black screen
     }
     
     public Game getGame() {
@@ -36,6 +48,10 @@ public class Window {
             this.frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
         else
             this.frame.setExtendedState(JFrame.NORMAL);
+    }
+    
+    public void setFrameSize(int width, int height) {
+        this.frameSize = new Dimension(width, height);
     }
     
     public boolean addScreen(Screen screen) {
@@ -77,6 +93,10 @@ public class Window {
      * 
      */
     
+    public int getScreenCount() {
+        return this.getScreens().size();
+    }
+    
     public Screen getCurrentScreen() {
         return this.getScreens().get(this.currentScreen);
     }
@@ -109,5 +129,9 @@ public class Window {
     
     public List<Screen> getScreens() {
         return this.screens;
+    }
+    
+    public Dimension getFrameSize() {
+        return this.frameSize;
     }
 }

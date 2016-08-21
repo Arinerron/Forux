@@ -1,5 +1,6 @@
 package com.arinerron.forux.core;
 
+import java.awt.image.BufferedImage;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -18,23 +19,35 @@ public class Clock {
         
         int delay = (int) (1000 / this.getGame().getSettings().getInt("render_speed"));
         
-        timer.schedule(new TimerTask() {
+        this.timer.scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run() {
-                Clock.this.update(); // this is the only exception.
+                if(!Clock.this.getGame().isPaused())
+                    if(Clock.this.getGame().isRunning())
+                        Clock.this.update();
+                    else {
+                        Clock.this.timer.cancel();
+                        Clock.this.timer = new Timer(); // reset game clock
+                    }
             }
-        }, delay);
+        }, delay, 0); // may be incorrect order
     }
     
-    protected void update() { // you should NEVER call this function!
+    private void update() {
+        BufferedImage image = new BufferedImage((int) this.getWindow().getFrameSize().getWidth(), (int) this.getWindow().getFrameSize().getHeight(), BufferedImage.TYPE_INT_ARGB);
         
+        this.tick();
     }
     
     public Game getGame() {
         return this.game;
     }
     
-    protected int tick() {
+    public Window getWindow() {
+        return this.getGame().getWindow();
+    }
+    
+    private int tick() {
         this.ticks++;
         return this.getTicks();
     }
