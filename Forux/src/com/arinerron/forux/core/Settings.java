@@ -14,6 +14,7 @@ public class Settings {
     
     public void loadDefaults() {
         this.set("render_speed", 20); // per second
+        this.set("max_fps", 40); // per second
     }
     
     public void set(String key, Object val) {

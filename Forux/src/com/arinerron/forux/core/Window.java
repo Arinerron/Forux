@@ -2,16 +2,19 @@ package com.arinerron.forux.core;
 
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 public class Window {
     private Game game = null;
     protected JFrame frame = null;
     private List<Screen> screens = new ArrayList<>();
     private Dimension frameSize = new Dimension(20, 20);
+    private BufferedImage image = null;
     
     private int currentScreen = -1;
     
@@ -20,6 +23,23 @@ public class Window {
         
         this.frame = new JFrame(this.getGame().getName());
         this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        int fps = ((1000 / this.getGame().getSettings().getInt("max_fps")));
+        this.frame.add(new JPanel() {
+            @Override
+            public void paintComponent(Graphics g) {
+                if(Window.this.getImage() != null)
+                    g.drawImage(Window.this.getImage(), 0, 0, null); // later: center and size the image properly.
+                
+                try {
+                    Thread.sleep(fps);
+                } catch(Exception e) {
+                    // this.getGame().getLogger().error(e); // later add this
+                }
+                
+                if(Window.this.getGame().isRunning())
+                    this.repaint();
+            }
+        });
         
         Screen screen = new Screen(this) {
             public void onDraw(Graphics g) {}
@@ -52,6 +72,10 @@ public class Window {
     
     public void setFrameSize(int width, int height) {
         this.frameSize = new Dimension(width, height);
+    }
+    
+    protected void setImage(BufferedImage image) {
+        this.image = image;
     }
     
     public boolean addScreen(Screen screen) {
@@ -102,7 +126,12 @@ public class Window {
     }
     
     public boolean setCurrentScreen(Screen screen) {
-        return setCurrentScreen(screen.getID());
+        this.getCurrentScreen().onStop();
+        boolean code = setCurrentScreen(screen.getID());
+        this.getCurrentScreen().onStart();
+        this.getGame().getEventHandler().onScreenSet(screen);
+        
+        return code;
     }
     
     public boolean setCurrentScreen(int id) {
@@ -133,5 +162,9 @@ public class Window {
     
     public Dimension getFrameSize() {
         return this.frameSize;
+    }
+    
+    public BufferedImage getImage() {
+        return this.image;
     }
 }

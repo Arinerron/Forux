@@ -35,6 +35,8 @@ public class Clock {
     
     private void update() {
         BufferedImage image = new BufferedImage((int) this.getWindow().getFrameSize().getWidth(), (int) this.getWindow().getFrameSize().getHeight(), BufferedImage.TYPE_INT_ARGB);
+        this.getWindow().getCurrentScreen().onDraw(image.getGraphics());
+        this.getWindow().setImage(image);
         
         this.tick();
     }
