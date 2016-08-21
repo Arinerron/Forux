@@ -1,4 +1,4 @@
 # Forux
 [![Build Status](https://travis-ci.org/Arinerron/Forux.svg?branch=master)](https://travis-ci.org/Arinerron/Forux)
 
-An in-development, simple, lightweight game library
+An in-development, simple, lightweight game library. Check the wiki for in-progress documentation.
