@@ -1,12 +1,15 @@
 package com.arinerron.forux.core;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
 public class Logger {
     public static int PRINT_TO_CONSOLE = 0;
     public static int PRINT_TO_FILE = 1;
     public static int PRINT_TO_CONSOLE_AND_FILE = 2;
     
     private Game game = null;
-    private int type = Logger.PRINT_TO_CONSOLE_AND_FILE;
+    private int type = Logger.PRINT_TO_CONSOLE_AND_FILE;    
     
     public Logger(Game game) {
         this.game = game;
@@ -20,7 +23,7 @@ public class Logger {
     }
     
     public void log(String type, Object o) {
-        log("[" + type.toUpperCase() + "] " + o);
+        log("[" + new SimpleDateFormat("yyyyMMdd_HHmmss").format(Calendar.getInstance().getTime()) + type.toUpperCase() + "] " + o);
     }
     
     public void info(Object o) {
