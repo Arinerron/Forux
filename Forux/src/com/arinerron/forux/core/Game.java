@@ -43,8 +43,20 @@ public class Game {
         }
     }
     
-    public void setRunning(boolean running) {
+    private void setRunning(boolean running) {
         this.running = running;
+    }
+    
+    public void stop() {
+        if(this.isRunning()) {
+            this.setRunning(false);
+            this.setPaused(false);
+            
+            this.getWindow().setVisible(false);
+            this.getClock().stop();
+            this.getEventHandler().onGameStop();
+            
+        }
     }
     
     public void setPaused(boolean paused) {

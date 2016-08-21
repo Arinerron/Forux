@@ -33,6 +33,10 @@ public class Clock {
         }, delay, delay);
     }
     
+    public void stop() {
+        this.timer.cancel();
+    }
+    
     private void update() {
         BufferedImage image = new BufferedImage((int) this.getWindow().getFrameSize().getWidth(), (int) this.getWindow().getFrameSize().getHeight(), BufferedImage.TYPE_INT_ARGB);
         this.getWindow().getCurrentScreen().onDraw(image.getGraphics());

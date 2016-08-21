@@ -124,6 +124,7 @@ public class Window {
     /* 
      * Later:
      * public void getScreen(int id);
+     * public void removeScreen(int id);
      * 
      */
     
