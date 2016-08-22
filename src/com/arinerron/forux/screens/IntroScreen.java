@@ -19,7 +19,7 @@ public class IntroScreen extends Screen {
         g.fillRect(0, 0, 500, 500);
         g.setColor(Color.BLUE);
         g.setFont(new Font(Font.SANS_SERIF, 30, 30));
-        g.drawString("Example slide", 200, 200);
+        g.drawString("Slide " + this.getClock().getTicksSinceIndex(), 200, 200);
     }
     
     @Override

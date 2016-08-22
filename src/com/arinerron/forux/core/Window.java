@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Point;
+import java.awt.event.ComponentEvent;
+import java.awt.event.ComponentListener;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,9 +19,15 @@ public class Window {
     private List<Screen> screens = new ArrayList<>();
     private Dimension frameSize = new Dimension(20, 20);
     private BufferedImage image = null;
-    private JPanel panel;
+    private JPanel panel = null;
     
     private int currentScreen = -1;
+    
+    private int width = 0;
+    private int height = 0;
+    private int gap = 0;
+    private double data = 0;
+    private double nw = 0;
     
     protected Window(Game game) {
         this.game = game;
@@ -28,13 +36,22 @@ public class Window {
         this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.frame.setBackground(Color.BLACK);
         this.frame.setLocationRelativeTo(null);
-        frame.setResizable(false);
+        this.frame.setResizable(false);
+        this.frame.addComponentListener(new ComponentListener() {
+            public void componentResized(ComponentEvent e) {
+                Window.this.recalculate();
+            }
+            
+            public void componentMoved(ComponentEvent e) {}
+            public void componentShown(ComponentEvent e) {}
+            public void componentHidden(ComponentEvent e) {}
+        });
         
         this.panel = new JPanel() {
             @Override
             public void paintComponent(Graphics g) {
                 if(Window.this.getImage() != null)
-                    g.drawImage(Window.this.getImage(), 0, 0, null); // later: center and size the image properly.
+                    g.drawImage(Window.this.getImage(), Window.this.gap, 0, (int) Window.this.nw, Window.this.width, null); // later: center and size the image properly.
             }
         };
         
@@ -50,6 +67,14 @@ public class Window {
         this.currentScreen = 0; // black screen
     }
     
+    private void recalculate() {
+        this.width = (int) this.getSize().getWidth();
+        this.height = (int) this.getSize().getHeight();
+        this.data = this.getImageSize().getHeight() / height;
+        this.nw = (this.getImageSize().getWidth() * this.data);
+        this.gap = (int) ((this.width / 2) - (this.nw / 2));
+    }
+    
     public Game getGame() {
         return this.game;
     }
@@ -62,8 +87,9 @@ public class Window {
     }
     
     public void setSize(int width, int height) {
-        panel.setPreferredSize(new Dimension(width, height));
+        this.panel.setPreferredSize(new Dimension(width, height));
         this.frame.pack();
+        this.recalculate();
     }
     
     public void setFullscreen(boolean fullscreen) {
@@ -71,6 +97,8 @@ public class Window {
             this.frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
         else
             this.frame.setExtendedState(JFrame.NORMAL);
+        
+        this.recalculate();
     }
     
     public void setLocation(int x, int y) {
@@ -81,8 +109,9 @@ public class Window {
         this.frame.setResizable(resizable);
     }
     
-    public void setFrameSize(int width, int height) {
+    public void setImageSize(int width, int height) {
         this.frameSize = new Dimension(width, height);
+        this.recalculate();
     }
     
     protected void setImage(BufferedImage image) {
@@ -164,7 +193,7 @@ public class Window {
     }
     
     public Dimension getSize() {
-        return this.frame.getSize();
+        return this.panel.getSize();
     }
     
     public boolean isFullscreen() {
@@ -183,7 +212,7 @@ public class Window {
         return this.screens;
     }
     
-    public Dimension getFrameSize() {
+    public Dimension getImageSize() {
         return this.frameSize;
     }
     
