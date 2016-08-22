@@ -36,15 +36,6 @@ public class Window {
             public void paintComponent(Graphics g) {
                 if(Window.this.getImage() != null)
                     g.drawImage(Window.this.getImage(), 0, 0, null); // later: center and size the image properly.
-                
-                try {
-                    Thread.sleep(fps);
-                } catch(Exception e) {
-                    Window.this.getGame().getLogger().error(e); // later add this
-                }
-                
-                if(Window.this.getGame().isRunning())
-                    this.repaint();
             }
         };
         
