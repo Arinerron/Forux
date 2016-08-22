@@ -29,7 +29,7 @@ public class Window {
         this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.frame.setBackground(Color.BLACK);
         this.frame.setLocationRelativeTo(null);
-        this.fps = ((1000 / this.getGame().getSettings().getInt("max_fps")));
+        // this.fps = ((1000 / this.getGame().getSettings().getInt("max_fps")));
         
         this.panel = new JPanel() {
             @Override
@@ -83,13 +83,11 @@ public class Window {
     }
     
     protected void setImage(BufferedImage image) {
+        boolean update = this.getImage() == image;
         this.image = image;
         
-        panel.repaint();
-        /* This calls an event dispatch thread so the setImage function will not lag at all because it's not the same thread
-        once the image is set, what it does is it will call a new thread (The event dispatch one) to repaint the canvas. That means that if the screen changes at all, it will update basically.
-        There is nothing wrong with this @arinerron
-        TODO: Take out this comment */
+        if(update)
+            panel.repaint();
     }
     
     public boolean addScreen(Screen screen) {
@@ -144,9 +142,9 @@ public class Window {
     }
     
     public boolean setCurrentScreen(int id) {
-        this.getCurrentScreen().onStop();
         for(int i = 0; i < this.getScreens().size(); i++)
             if(this.getScreens().get(i).getID() == id) {
+                this.getCurrentScreen().onStop();
                 this.currentScreen = i;
                 this.getGame().getClock().index();
                 this.getCurrentScreen().onStart();
