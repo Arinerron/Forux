@@ -6,7 +6,7 @@ public class Settings {
     private Game game = null;
     private HashMap<String, Object> settings = new HashMap<>();
     
-    public Settings(Game game) {
+    protected Settings(Game game) {
         this.game = game;
         
         this.loadDefaults();

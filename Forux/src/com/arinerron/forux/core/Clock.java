@@ -11,7 +11,7 @@ public class Clock {
     private int index = 0;
     private Timer timer = null;
     
-    public Clock(Game game) {
+    protected Clock(Game game) {
         this.game = game;
     }
     
@@ -23,8 +23,8 @@ public class Clock {
         this.timer.scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run() {
-                if(!Clock.this.getGame().isPaused())
-                    if(Clock.this.getGame().isRunning())
+                if (!Clock.this.getGame().isPaused())
+                    if (Clock.this.getGame().isRunning())
                         Clock.this.update();
                     else {
                         Clock.this.timer.cancel();
@@ -39,7 +39,8 @@ public class Clock {
     }
     
     private void update() {
-        BufferedImage image = new BufferedImage((int) this.getWindow().getFrameSize().getWidth(), (int) this.getWindow().getFrameSize().getHeight(), BufferedImage.TYPE_INT_ARGB);
+        BufferedImage image = new BufferedImage((int) this.getWindow().getFrameSize().getWidth(),
+                (int) this.getWindow().getFrameSize().getHeight(), BufferedImage.TYPE_INT_ARGB);
         Graphics g = image.getGraphics();
         this.getWindow().getCurrentScreen().onDraw(g);
         g.dispose();

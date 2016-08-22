@@ -9,7 +9,7 @@ public class EventHandler {
     private Game game = null;
     private List<EventListener> eventListeners = new ArrayList<>(); 
     
-    public EventHandler(Game game) {
+    protected EventHandler(Game game) {
         this.game = game;
     }
     

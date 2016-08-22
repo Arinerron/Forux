@@ -22,7 +22,7 @@ public class Window {
     
     private int currentScreen = -1;
     
-    public Window(Game game) {
+    protected Window(Game game) {
         this.game = game;
         
         this.frame = new JFrame(this.getGame().getName());
@@ -84,6 +84,7 @@ public class Window {
     
     protected void setImage(BufferedImage image) {
         this.image = image;
+        
         panel.repaint();
         /* This calls an event dispatch thread so the setImage function will not lag at all because it's not the same thread
         once the image is set, what it does is it will call a new thread (The event dispatch one) to repaint the canvas. That means that if the screen changes at all, it will update basically.

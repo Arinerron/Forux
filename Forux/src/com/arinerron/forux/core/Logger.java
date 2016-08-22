@@ -11,7 +11,7 @@ public class Logger {
     private Game game = null;
     private int type = Logger.PRINT_TO_CONSOLE_AND_FILE;    
     
-    public Logger(Game game) {
+    protected Logger(Game game) {
         this.game = game;
     }
     
