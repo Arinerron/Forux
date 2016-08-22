@@ -18,6 +18,7 @@ public class Window {
     private Dimension frameSize = new Dimension(20, 20);
     private BufferedImage image = null;
     private int fps = 20;
+    private JPanel panel;
     
     private int currentScreen = -1;
     
@@ -29,22 +30,16 @@ public class Window {
         this.frame.setBackground(Color.BLACK);
         this.frame.setLocationRelativeTo(null);
         this.fps = ((1000 / this.getGame().getSettings().getInt("max_fps")));
-        this.frame.add(new JPanel() {
+        
+        this.panel = new JPanel() {
             @Override
             public void paintComponent(Graphics g) {
                 if(Window.this.getImage() != null)
                     g.drawImage(Window.this.getImage(), 0, 0, null); // later: center and size the image properly.
-                
-                try {
-                    Thread.sleep(fps);
-                } catch(Exception e) {
-                    Window.this.getGame().getLogger().error(e); // later add this
-                }
-                
-                if(Window.this.getGame().isRunning())
-                    this.repaint();
             }
-        });
+        };
+        
+        this.frame.add(panel);
         
         Screen screen = new Screen(this) {
             public void onDraw(Graphics g) {}
@@ -68,7 +63,8 @@ public class Window {
     }
     
     public void setSize(int width, int height) {
-        this.frame.setSize(width, height);
+        panel.setPreferredSize(new Dimension(width, height));
+        this.frame.pack();
     }
     
     public void setFullscreen(boolean fullscreen) {
@@ -88,6 +84,11 @@ public class Window {
     
     protected void setImage(BufferedImage image) {
         this.image = image;
+        panel.repaint();
+        /* This calls an event dispatch thread so the setImage function will not lag at all because it's not the same thread
+        once the image is set, what it does is it will call a new thread (The event dispatch one) to repaint the canvas. That means that if the screen changes at all, it will update basically.
+        There is nothing wrong with this @arinerron
+        TODO: Take out this comment */
     }
     
     public boolean addScreen(Screen screen) {
