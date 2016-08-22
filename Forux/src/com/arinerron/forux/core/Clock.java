@@ -1,5 +1,6 @@
 package com.arinerron.forux.core;
 
+import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -39,7 +40,10 @@ public class Clock {
     
     private void update() {
         BufferedImage image = new BufferedImage((int) this.getWindow().getFrameSize().getWidth(), (int) this.getWindow().getFrameSize().getHeight(), BufferedImage.TYPE_INT_ARGB);
-        this.getWindow().getCurrentScreen().onDraw(image.getGraphics());
+        Graphics g = image.getGraphics();
+        this.getWindow().getCurrentScreen().onDraw(g);
+        g.dispose();
+        
         this.getWindow().setImage(image);
         
         this.tick();
