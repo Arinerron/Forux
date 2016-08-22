@@ -32,7 +32,7 @@ public class Game {
         
     }
     
-    public void start() {
+    public synchronized void start() {
         if(!this.isRunning()) {
             this.setRunning(true);
             this.setPaused(false);
@@ -43,11 +43,7 @@ public class Game {
         }
     }
     
-    private void setRunning(boolean running) {
-        this.running = running;
-    }
-    
-    public void stop() {
+    public synchronized void stop() {
         if(this.isRunning()) {
             this.setRunning(false);
             this.setPaused(false);
@@ -57,6 +53,10 @@ public class Game {
             this.getEventHandler().onGameStop();
             
         }
+    }
+    
+    private void setRunning(boolean running) {
+        this.running = running;
     }
     
     public void setPaused(boolean paused) {

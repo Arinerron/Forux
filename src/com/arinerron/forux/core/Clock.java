@@ -15,7 +15,7 @@ public class Clock {
         this.game = game;
     }
     
-    protected void start() {
+    protected synchronized void start() {
         this.timer = new Timer();
         
         int delay = (int) (1000 / this.getGame().getSettings().getInt("render_speed"));
@@ -34,11 +34,13 @@ public class Clock {
         }, delay, delay);
     }
     
-    public void stop() {
+    public synchronized void stop() {
         this.timer.cancel();
     }
     
     private void update() {
+        this.tick();
+        
         BufferedImage image = new BufferedImage((int) this.getWindow().getFrameSize().getWidth(),
                 (int) this.getWindow().getFrameSize().getHeight(), BufferedImage.TYPE_INT_ARGB);
         Graphics g = image.getGraphics();
@@ -46,8 +48,6 @@ public class Clock {
         g.dispose();
         
         this.getWindow().setImage(image);
-        
-        this.tick();
     }
     
     public Game getGame() {

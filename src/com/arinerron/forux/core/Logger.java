@@ -23,7 +23,7 @@ public class Logger {
     }
     
     public void log(String type, Object o) {
-        log("[" + new SimpleDateFormat("yyyyMMdd_HHmmss").format(Calendar.getInstance().getTime()) + type.toUpperCase() + "] " + o);
+        log("[" + new SimpleDateFormat("MM/dd/yyyy-HH:mm:ss").format(Calendar.getInstance().getTime()) + " " + type.toUpperCase() + "] " + o);
     }
     
     public void info(Object o) {

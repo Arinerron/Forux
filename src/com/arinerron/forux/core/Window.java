@@ -17,7 +17,6 @@ public class Window {
     private List<Screen> screens = new ArrayList<>();
     private Dimension frameSize = new Dimension(20, 20);
     private BufferedImage image = null;
-    private int fps = 20;
     private JPanel panel;
     
     private int currentScreen = -1;
@@ -29,7 +28,7 @@ public class Window {
         this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.frame.setBackground(Color.BLACK);
         this.frame.setLocationRelativeTo(null);
-        // this.fps = ((1000 / this.getGame().getSettings().getInt("max_fps")));
+        frame.setResizable(false);
         
         this.panel = new JPanel() {
             @Override
@@ -78,15 +77,20 @@ public class Window {
         this.frame.setLocation(x, y);
     }
     
+    public void setResizable(boolean resizable) {
+        this.frame.setResizable(resizable);
+    }
+    
     public void setFrameSize(int width, int height) {
         this.frameSize = new Dimension(width, height);
     }
     
     protected void setImage(BufferedImage image) {
-        boolean update = this.getImage() == image;
+        boolean update = this.getImage() != image;
         this.image = image;
         
-        if(update)
+        if(update) // should it repaint, or did the image not change?
+            
             panel.repaint();
     }
     
@@ -145,7 +149,7 @@ public class Window {
         for(int i = 0; i < this.getScreens().size(); i++)
             if(this.getScreens().get(i).getID() == id) {
                 this.getCurrentScreen().onStop();
-                this.currentScreen = i;
+                this.currentScreen = i + 1;
                 this.getGame().getClock().index();
                 this.getCurrentScreen().onStart();
                 this.getGame().getEventHandler().onScreenSet(this.getScreens().get(i));
@@ -169,6 +173,10 @@ public class Window {
     
     public Point getLocation() {
         return this.frame.getLocation();
+    }
+    
+    public boolean isResizable() {
+        return this.frame.isResizable();
     }
     
     public List<Screen> getScreens() {

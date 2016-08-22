@@ -9,9 +9,10 @@ public abstract class Screen {
     
     public Screen(Window window) {
         this.window = window;
+        this.getWindow().addScreen(this);
     }
     
-    protected void setID(int id) {
+    public void setID(int id) {
         if(id == -1)
             this.id = id;
     }
