@@ -25,9 +25,11 @@ public class Window {
     
     private int width = 0;
     private int height = 0;
-    private int gap = 0;
+    private int gapX = 0;
+    private int gapY = 0;
     private double data = 0;
     private double nw = 0;
+    private double nh = 0;
     
     protected Window(Game game) {
         this.game = game;
@@ -51,7 +53,7 @@ public class Window {
             @Override
             public void paintComponent(Graphics g) {
                 if(Window.this.getImage() != null)
-                    g.drawImage(Window.this.getImage(), Window.this.gap, 0, (int) Window.this.nw, Window.this.height, null); // later: center and size the image properly.
+                    g.drawImage(Window.this.getImage(), Window.this.gapX, Window.this.gapY, (int)Window.this.nw, (int)Window.this.nh, null);
             }
         };
         
@@ -70,9 +72,19 @@ public class Window {
     private void recalculate() {
         this.width = (int) this.getSize().getWidth();
         this.height = (int) this.getSize().getHeight();
-        this.data = height / this.getImageSize().getHeight();
-        this.nw = (this.getImageSize().getWidth() * this.data);
-        this.gap = (int) ((this.width / 2) - (this.nw / 2));
+        if(this.width > this.height) {
+            this.data = height / this.getImageSize().getHeight();
+            this.nw = (this.getImageSize().getWidth() * this.data);
+            this.gapX = (int) ((this.width / 2) - (this.nw / 2));
+            this.nh = height;
+            this.gapY = 0;
+        } else {
+            this.data = width / this.getImageSize().getWidth();
+            this.nh = (this.getImageSize().getHeight() * this.data);
+            this.gapY = (int) ((this.height / 2) - (this.nh / 2));
+            this.nw = width;
+            this.gapX = 0;
+        }
     }
     
     public Game getGame() {
