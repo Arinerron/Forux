@@ -1,11 +1,20 @@
 package com.arinerron.forux.core;
 
 import java.awt.Graphics;
+import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
+import java.util.ArrayList;
+import java.util.List;
 
-public abstract class Screen {
+import com.arinerron.forux.core.menu.Button;
+import com.arinerron.forux.core.menu.Component;
+
+public class Screen {
     private Window window = null;
     private int id = -1;
     private boolean active = false;
+    public final List<Component> components = new ArrayList<>();
+    private int focus;
     
     public Screen(Window window) {
         this.window = window;
@@ -13,7 +22,7 @@ public abstract class Screen {
     }
     
     public void setID(int id) {
-        if(id == -1)
+        if (id == -1)
             this.id = id;
     }
     
@@ -41,7 +50,116 @@ public abstract class Screen {
         return this.active;
     }
     
-    public abstract void onDraw(Graphics g);
-    public abstract void onStart();
-    public abstract void onStop();
+    public Component getFocus() {
+        return this.getComponents().get(this.focus);
+    }
+    
+    public boolean setFocus(int id) {
+        if(this.getComponent(id) != null) {
+            if(this.getFocus() != null)
+                this.getFocus().looseFocus();
+            
+            this.focus = id;
+            this.getFocus().requestFocus();
+            
+            return true;
+        }
+        
+        return false;
+    }
+    
+    public Component getComponent(int id) {
+        for(Component component : this.getComponents())
+            if(component.getID() == id)
+                return component;
+        return null;
+    }
+    
+    public boolean setFocus(Component component) {
+        return this.setFocus(component);
+    }
+    
+    public int addComponent(Component component) {
+        int id = this.getComponents().size();
+        this.components.add(component);
+        
+        return id;
+    }
+    
+    public boolean removeComponent(Component component) {
+        return this.components.remove(component);
+    }
+    
+    public List<Component> getComponents() {
+        return this.components;
+    }
+    
+    public void onDraw(Graphics g) {
+        for (Component component : this.getComponents())
+            if (component.isVisible())
+                component.onDraw(g);
+    }
+    
+    public void onMouseDown(int x, int y) {
+        for (Component component : this.getComponents())
+            component.onMouseDown(x, y);
+    }
+    
+    public void onMouseUp(int x, int y) {
+        for (Component component : this.getComponents())
+            component.onMouseUp(x, y);
+    }
+    
+    public void onMouseMotion(int x, int y) {
+        for (Component component : this.getComponents())
+            component.onMouseMotion(x, y);
+    }
+    
+    public int getComponentCount() {
+        return this.getComponents().size();
+    }
+    
+    public void onKeyPress(KeyEvent e) {
+        boolean run = true;
+        
+        if (this.getComponentCount() != 0) {
+            if (e.getKeyCode() == KeyEvent.VK_TAB || e.getKeyCode() == KeyEvent.VK_DOWN
+                    || (e.getKeyCode() == KeyEvent.VK_ENTER && !(this.getFocus() instanceof Button)) || (this.getFocus() instanceof Button && (e.getKeyCode() == KeyEvent.VK_RIGHT))) {
+                if (focus >= this.getComponentCount() - 1)
+                    this.setFocus(0);
+                else
+                    this.setFocus(focus + 1);
+                if(this.getFocus() instanceof Button)
+                    ((Button)this.getFocus()).press(); // TODO: how did it get here?
+                run = false;
+            } else if (e.getKeyCode() == KeyEvent.VK_UP || (this.getFocus() instanceof Button && (e.getKeyCode() == KeyEvent.VK_LEFT))) {
+                if (focus <= 0)
+                    if(this.getComponentCount() > 1)
+                        this.setFocus(this.getComponents().size() - 1);
+                else
+                    if(this.getComponentCount() > 1)
+                        this.setFocus(this.focus - 1);
+                run = false;
+            }
+        }
+
+        if (run)
+            for (Component component : this.getComponents())
+                component.onKeyPress(e);
+    }
+
+    public void onKeyRelease(KeyEvent e) {
+        for (Component component : this.getComponents())
+            component.onKeyRelease(e);
+    }
+
+    public void onStop() {
+        for (Component component : this.getComponents())
+            component.onStop();
+    }
+
+    public void onStart() {
+        for (Component component : this.getComponents())
+            component.onStart();
+    }
 }

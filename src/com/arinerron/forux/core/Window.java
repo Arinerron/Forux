@@ -30,7 +30,6 @@ public class Window {
     private double data = 0;
     private double nw = 0;
     private double nh = 0;
-    private boolean synchronize = false;
     
     protected Window(Game game) {
         this.game = game;
@@ -42,8 +41,6 @@ public class Window {
         this.frame.setResizable(false);
         this.frame.addComponentListener(new ComponentListener() {
             public void componentResized(ComponentEvent e) {
-                if(Window.this.isSynchronizingSize())
-                    Window.this.synchronizeSize();
                 Window.this.recalculate();
             }
             
@@ -73,27 +70,20 @@ public class Window {
     }
     
     private void recalculate() {
-        if(!this.isSynchronizingSize()) {
-            this.width = (int) this.getSize().getWidth();
-            this.height = (int) this.getSize().getHeight();
-            if(this.width > this.height) {
-                this.data = height / this.getImageSize().getHeight();
-                this.nw = (this.getImageSize().getWidth() * this.data);
-                this.gapX = (int) ((this.width / 2) - (this.nw / 2));
-                this.nh = height;
-                this.gapY = 0;
-            } else {
-                this.data = width / this.getImageSize().getWidth();
-                this.nh = (this.getImageSize().getHeight() * this.data);
-                this.gapY = (int) ((this.height / 2) - (this.nh / 2));
-                this.nw = width;
-                this.gapX = 0;
-            }
-        } else {
-            this.nw = this.getSize().getWidth();
-            this.nh = this.getSize().getHeight();
-            this.gapX = 0;
+        this.width = (int) this.getSize().getWidth();
+        this.height = (int) this.getSize().getHeight();
+        if(this.width > this.height) {
+            this.data = height / this.getImageSize().getHeight();
+            this.nw = (this.getImageSize().getWidth() * this.data);
+            this.gapX = (int) ((this.width / 2) - (this.nw / 2));
+            this.nh = height;
             this.gapY = 0;
+        } else {
+            this.data = width / this.getImageSize().getWidth();
+            this.nh = (this.getImageSize().getHeight() * this.data);
+            this.gapY = (int) ((this.height / 2) - (this.nh / 2));
+            this.nw = width;
+            this.gapX = 0;
         }
     }
     
@@ -112,15 +102,6 @@ public class Window {
         this.panel.setPreferredSize(new Dimension(width, height));
         this.frame.pack();
         this.recalculate();
-    }
-    
-    public void setSynchronizingSize(boolean synchronize) {
-        this.synchronize = synchronize;
-        this.synchronizeSize();
-    }
-    
-    private void synchronizeSize() {
-        this.setImageSize((int)this.getSize().getWidth(), (int)this.getSize().getHeight());
     }
     
     public void setFullscreen(boolean fullscreen) {
@@ -149,7 +130,8 @@ public class Window {
         boolean update = this.getImage() != image;
         this.image = image;
         
-        if(update)
+        if(update) // should it repaint, or did the image not change?
+            
             panel.repaint();
     }
     
@@ -236,10 +218,6 @@ public class Window {
     
     public boolean isResizable() {
         return this.frame.isResizable();
-    }
-    
-    public boolean isSynchronizingSize() {
-        return this.synchronize;
     }
     
     public List<Screen> getScreens() {
