@@ -24,7 +24,7 @@ public class Game {
         this.clock = new Clock(this);
         
         Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
-            @Override 
+            @Override
             public void run() {
                 Game.this.getEventHandler().onGameStop();
             }
@@ -33,7 +33,7 @@ public class Game {
     }
     
     public synchronized void start() {
-        if(!this.isRunning()) {
+        if (!this.isRunning()) {
             this.setRunning(true);
             this.setPaused(false);
             
@@ -44,7 +44,7 @@ public class Game {
     }
     
     public synchronized void stop() {
-        if(this.isRunning()) {
+        if (this.isRunning()) {
             this.setRunning(false);
             this.setPaused(false);
             
@@ -78,7 +78,7 @@ public class Game {
     public Clock getClock() {
         return this.clock;
     }
-
+    
     public EventHandler getEventHandler() {
         return this.eventHandler;
     }

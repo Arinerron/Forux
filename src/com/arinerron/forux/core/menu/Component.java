@@ -4,9 +4,11 @@ import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 
 import com.arinerron.forux.core.Game;
+import com.arinerron.forux.core.Screen;
 import com.arinerron.forux.core.Window;
 
-public class Component /*extends Screen*/ { // TODO: Add color changing support!
+public class Component /* extends Screen */ { // TODO: Add color changing
+                                              // support!
     private MenuScreen screen = null;
     
     private int id = -1;
@@ -18,16 +20,22 @@ public class Component /*extends Screen*/ { // TODO: Add color changing support!
     private boolean focus = false;
     private boolean enabled = true;
     private String text = "";
-
+    
     public static int CENTER = 0;
     public static int LEFT = 1;
     public static int RIGHT = 2;
     
-   // /* DO NOT USE THIS CONSTRUCTOR & don't delete this either */ public Component(Window window) throws Exception {super(window); window.getGame().getLogger().error("public Component(Screen screen) must be used! Invalid constructor!"); throw new Exception();} // DON'T USE THIS
+    // /* DO NOT USE THIS CONSTRUCTOR & don't delete this either */ public
+    // Component(Window window) throws Exception {super(window);
+    // window.getGame().getLogger().error("public Component(Screen screen) must
+    // be used! Invalid constructor!"); throw new Exception();} // DON'T USE
+    // THIS
     
-    public Component() {}
+    public Component() {
+    }
     
-    public void setScreen(MenuScreen screen, int id) { // DON'T CALL DIRECTLY!
+    public void setMenuScreen(MenuScreen screen, int id) { // DON'T CALL
+                                                           // DIRECTLY!
         this.screen = screen;
         
         this.id = id;
@@ -37,10 +45,10 @@ public class Component /*extends Screen*/ { // TODO: Add color changing support!
         return this.id;
     }
     
-    public MenuScreen getScreen() {
+    public Screen getMenuScreen() {
         return this.screen;
     }
-
+    
     public boolean isVisible() {
         return visible;
     }
@@ -52,79 +60,85 @@ public class Component /*extends Screen*/ { // TODO: Add color changing support!
     public String getText() {
         return this.text;
     }
-
+    
     public void setVisible(boolean visible) {
         this.visible = visible;
     }
-
+    
     public int getX() {
         return x;
     }
-
+    
     public void setX(int x) {
         this.x = x;
     }
-
+    
     public int getWidth() {
         return width;
     }
-
+    
     public void setWidth(int width) {
         this.width = width;
     }
-
+    
     public int getHeight() {
         return height;
     }
-
+    
     public void setHeight(int height) {
         this.height = height;
     }
-
+    
     public int getY() {
         return y;
     }
-
+    
     public void setY(int y) {
         this.y = y;
     }
-
+    
     public boolean isEnabled() {
         return enabled;
     }
-
+    
     public void setEnabled(boolean enabled) {
         this.enabled = enabled;
     }
-
+    
     public void requestFocus() {
-        this.focus = true; // Don't use this function! IT WILL MESS EVERYTHING UP!
+        this.focus = true; // Don't use this function! IT WILL MESS EVERYTHING
+                           // UP!
     }
-
+    
     public void looseFocus() {
         this.focus = false;
     }
-
+    
     public boolean hasFocus() {
         return this.focus;
     }
     
     public Game getGame() {
-        return this.getScreen().getGame();
+        return this.getMenuScreen().getGame();
     }
     
     public Window getWindow() {
-        return this.getScreen().getWindow();
+        return this.getMenuScreen().getWindow();
     }
-
+    
     public void autoPosition(int type, int id) {
         
         /*
-         * id is the element number in the array of components
-         * type is either Component.CENTER, Component.LEFT, or Component.RIGHT. You should only have to use Component.CENTER since you aren't using buttons, but for buttons it is really useful.
+         * id is the element number in the array of components type is either
+         * Component.CENTER, Component.LEFT, or Component.RIGHT. You should only
+         * have to use Component.CENTER since you aren't using buttons, but for
+         * buttons it is really useful.
          * 
-         * this.getWindow().getImageSize().getWidth() in this function is the REAL width of the BufferedImage that gets stretched.
-         * padding is the distance between each component vertically (And with buttons and the Component.LEFT and Component.RIGHT horizontally padding, but ignore that for now)
+         * this.getWindow().getImageSize().getWidth() in this function is the
+         * REAL width of the BufferedImage that gets stretched. padding is the
+         * distance between each component vertically (And with buttons and the
+         * Component.LEFT and Component.RIGHT horizontally padding, but ignore
+         * that for now)
          * 
          */
         try {
@@ -153,39 +167,43 @@ public class Component /*extends Screen*/ { // TODO: Add color changing support!
             this.setY(fy);
             this.setWidth(buttonWidth);
             this.setHeight(buttonHeight);
-        } catch(Exception e) {
-            System.err.println("Try add this Component to the Screen first. Blame this error on @mysterywave, he wanted it to be like this :P");
+        } catch (Exception e) {
+            System.err.println(
+                    "Try add this Component to the Screen first. Blame this error on @mysterywave, he wanted it to be like this :P");
             e.printStackTrace();
         }
     }
     
-    public void onKeyPress(KeyEvent e) {}
-    public void onKeyRelease(KeyEvent e) {}
-
+    public void onKeyPress(KeyEvent e) {
+    }
+    
+    public void onKeyRelease(KeyEvent e) {
+    }
+    
     public void onDraw(Graphics g) {
         
     }
-
+    
     public void onMouseDown(int x2, int y2) {
         // TODO Auto-generated method stub
         
     }
-
+    
     public void onMouseUp(int x2, int y2) {
         // TODO Auto-generated method stub
         
     }
-
+    
     public void onMouseMotion(int x2, int y2) {
         // TODO Auto-generated method stub
         
     }
-
+    
     public void onStart() {
         // TODO Auto-generated method stub
         
     }
-
+    
     public void onStop() {
         // TODO Auto-generated method stub
         

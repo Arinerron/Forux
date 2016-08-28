@@ -2,7 +2,7 @@ package com.arinerron.forux.events;
 
 import com.arinerron.forux.core.EventHandler;
 import com.arinerron.forux.core.Game;
-import com.arinerron.forux.core.menu.MenuScreen;
+import com.arinerron.forux.core.Screen;
 
 public abstract class EventListener {
     private Game game = null;
@@ -33,7 +33,10 @@ public abstract class EventListener {
     }
     
     public abstract void onGameStart();
+    
     public abstract void onGameStop();
+    
     public abstract void onGameError(String message);
-    public abstract void onScreenSet(MenuScreen screen);
+    
+    public abstract void onScreenSet(Screen screen);
 }

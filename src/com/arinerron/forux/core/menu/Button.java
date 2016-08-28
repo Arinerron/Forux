@@ -42,8 +42,7 @@ public class Button extends Component {
                 g.setColor(Color.DARK_GRAY);
         else
             g.setColor(Color.GRAY);
-        RoundRectangle2D roundedRectangle = new RoundRectangle2D.Float(0, 0, this.getWidth(),
-                this.getHeight(), 30, 30);
+        RoundRectangle2D roundedRectangle = new RoundRectangle2D.Float(0, 0, this.getWidth(), this.getHeight(), 30, 30);
         g.fill(roundedRectangle);
         // g.fillRect(this.getX(), this.getY(), this.getWidth(),
         // this.getHeight());

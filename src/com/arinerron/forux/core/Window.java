@@ -13,12 +13,10 @@ import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import com.arinerron.forux.core.menu.MenuScreen;
-
 public class Window {
     private Game game = null;
     protected JFrame frame = null;
-    private List<MenuScreen> screens = new ArrayList<>();
+    private List<Screen> screens = new ArrayList<>();
     private Dimension imageSize = new Dimension(20, 20);
     private BufferedImage image = null;
     private JPanel panel = null;
@@ -46,25 +44,36 @@ public class Window {
                 Window.this.recalculate();
             }
             
-            public void componentMoved(ComponentEvent e) {}
-            public void componentShown(ComponentEvent e) {}
-            public void componentHidden(ComponentEvent e) {}
+            public void componentMoved(ComponentEvent e) {
+            }
+            
+            public void componentShown(ComponentEvent e) {
+            }
+            
+            public void componentHidden(ComponentEvent e) {
+            }
         });
         
         this.panel = new JPanel() {
             @Override
             public void paintComponent(Graphics g) {
-                if(Window.this.getImage() != null)
-                    g.drawImage(Window.this.getImage(), Window.this.gapX, Window.this.gapY, (int)Window.this.nw, (int)Window.this.nh, null);
+                if (Window.this.getImage() != null)
+                    g.drawImage(Window.this.getImage(), Window.this.gapX, Window.this.gapY, (int) Window.this.nw,
+                            (int) Window.this.nh, null);
             }
         };
         
         this.frame.add(panel);
         
-        MenuScreen screen = new MenuScreen(this) {
-            public void onDraw(Graphics g) {}
-            public void onStart() {}
-            public void onStop() {}
+        Screen screen = new Screen(this) {
+            public void onDraw(Graphics g) {
+            }
+            
+            public void onStart() {
+            }
+            
+            public void onStop() {
+            }
         };
         
         this.addScreen(screen);
@@ -74,7 +83,7 @@ public class Window {
     private void recalculate() {
         this.width = (int) this.getSize().getWidth();
         this.height = (int) this.getSize().getHeight();
-        if(this.width > this.height) {
+        if (this.width > this.height) {
             this.data = height / this.getImageSize().getHeight();
             this.nw = (this.getImageSize().getWidth() * this.data);
             this.gapX = (int) ((this.width / 2) - (this.nw / 2));
@@ -94,9 +103,9 @@ public class Window {
     }
     
     public void setVisible(boolean visible) { // will start game if !running
-        if(!this.getGame().isRunning())
+        if (!this.getGame().isRunning())
             this.getGame().start();
-
+        
         this.frame.setVisible(visible);
     }
     
@@ -132,12 +141,12 @@ public class Window {
         boolean update = this.getImage() != image;
         this.image = image;
         
-        if(update) // should it repaint, or did the image not change?
+        if (update) // should it repaint, or did the image not change?
             panel.repaint();
     }
     
-    public boolean addScreen(MenuScreen screen) {
-        if(!this.getScreens().contains(screen)) {
+    public boolean addScreen(Screen screen) {
+        if (!this.getScreens().contains(screen)) {
             screen.setID(this.getScreens().size());
             this.screens.add(screen);
             return true;
@@ -146,8 +155,8 @@ public class Window {
         return false;
     }
     
-    public boolean removeScreen(MenuScreen screen) {
-        if(this.getScreens().contains(screen)) {
+    public boolean removeScreen(Screen screen) {
+        if (this.getScreens().contains(screen)) {
             this.screens.remove(screen);
             return true;
         }
@@ -156,12 +165,12 @@ public class Window {
     }
     
     public boolean removeScreen(int id) {
-        MenuScreen remove = null;
-        for(MenuScreen screen : this.getScreens())
-            if(screen.getID() == id)
+        Screen remove = null;
+        for (Screen screen : this.getScreens())
+            if (screen.getID() == id)
                 remove = screen;
         
-        if(remove != null) {
+        if (remove != null) {
             this.screens.remove(remove);
             return true;
         }
@@ -169,9 +178,8 @@ public class Window {
         return false;
     }
     
-    /* 
-     * Later:
-     * public void getScreen(int id);
+    /*
+     * Later: public void getScreen(int id);
      * 
      */
     
@@ -179,17 +187,17 @@ public class Window {
         return this.getScreens().size();
     }
     
-    public MenuScreen getCurrentScreen() {
+    public Screen getCurrentScreen() {
         return this.getScreens().get(this.currentScreen);
     }
     
-    public boolean setCurrentScreen(MenuScreen screen) {
+    public boolean setCurrentScreen(Screen screen) {
         return setCurrentScreen(screen.getID());
     }
     
     public boolean setCurrentScreen(int id) {
-        for(int i = 0; i < this.getScreens().size(); i++)
-            if(this.getScreens().get(i).getID() == id) {
+        for (int i = 0; i < this.getScreens().size(); i++)
+            if (this.getScreens().get(i).getID() == id) {
                 this.getCurrentScreen().onStop();
                 this.currentScreen = i + 1;
                 this.getGame().getClock().index();
@@ -201,7 +209,7 @@ public class Window {
         return false;
     }
     
-    public boolean isVisible() { 
+    public boolean isVisible() {
         return this.frame.isVisible();
     }
     
@@ -221,7 +229,7 @@ public class Window {
         return this.frame.isResizable();
     }
     
-    public List<MenuScreen> getScreens() {
+    public List<Screen> getScreens() {
         return this.screens;
     }
     
