@@ -42,27 +42,19 @@ public class Screen {
         return this.active;
     }
     
-    public void onDraw(Graphics g) {
-    }
+    public void onDraw(Graphics g) {}
     
-    public void onMouseDown(int x, int y) {
-    }
+    public void onMouseDown(int x, int y) {}
     
-    public void onMouseUp(int x, int y) {
-    }
+    public void onMouseUp(int x, int y) {}
     
-    public void onMouseMotion(int x, int y) {
-    }
+    public void onMouseMotion(int x, int y) {}
     
-    public void onKeyPress(KeyEvent e) {
-    }
+    public void onKeyPress(KeyEvent e) {}
     
-    public void onKeyRelease(KeyEvent e) {
-    }
+    public void onKeyRelease(KeyEvent e) {}
     
-    public void onStop() {
-    }
+    public void onStop() {}
     
-    public void onStart() {
-    }
+    public void onStart() {}
 }

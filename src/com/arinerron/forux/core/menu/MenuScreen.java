@@ -35,7 +35,7 @@ public class MenuScreen extends Screen {
     }
     
     public Component getComponent(int id) {
-        for (Component component : this.getComponents())
+        for(Component component : this.getComponents())
             if (component.getID() == id)
                 return component;
         return null;
@@ -88,7 +88,7 @@ public class MenuScreen extends Screen {
         }
         
         if (run)
-            for (Component component : this.getComponents())
+            for(Component component : this.getComponents())
                 component.onKeyPress(e);
     }
     
@@ -97,38 +97,38 @@ public class MenuScreen extends Screen {
     }
     
     public void onDraw(Graphics g) {
-        for (Component component : this.getComponents())
+        for(Component component : this.getComponents())
             if (component.isVisible())
                 component.onDraw(g);
     }
     
     public void onMouseDown(int x, int y) {
-        for (Component component : this.getComponents())
+        for(Component component : this.getComponents())
             component.onMouseDown(x, y);
     }
     
     public void onMouseUp(int x, int y) {
-        for (Component component : this.getComponents())
+        for(Component component : this.getComponents())
             component.onMouseUp(x, y);
     }
     
     public void onMouseMotion(int x, int y) {
-        for (Component component : this.getComponents())
+        for(Component component : this.getComponents())
             component.onMouseMotion(x, y);
     }
     
     public void onKeyRelease(KeyEvent e) {
-        for (Component component : this.getComponents())
+        for(Component component : this.getComponents())
             component.onKeyRelease(e);
     }
     
     public void onStop() {
-        for (Component component : this.getComponents())
+        for(Component component : this.getComponents())
             component.onStop();
     }
     
     public void onStart() {
-        for (Component component : this.getComponents())
+        for(Component component : this.getComponents())
             component.onStart();
     }
     

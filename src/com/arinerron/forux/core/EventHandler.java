@@ -48,22 +48,22 @@ public class EventHandler {
     // Event Listener functions
     
     public void onGameStart() {
-        for (EventListener eventListener : this.getEventListeners())
+        for(EventListener eventListener : this.getEventListeners())
             eventListener.onGameStart();
     }
     
     public void onGameStop() {
-        for (EventListener eventListener : this.getEventListeners())
+        for(EventListener eventListener : this.getEventListeners())
             eventListener.onGameStop();
     }
     
     public void onGameError() {
-        for (EventListener eventListener : this.getEventListeners())
+        for(EventListener eventListener : this.getEventListeners())
             eventListener.onGameStop();
     }
     
     public void onScreenSet(Screen screen) {
-        for (EventListener eventListener : this.getEventListeners())
+        for(EventListener eventListener : this.getEventListeners())
             eventListener.onScreenSet(screen);
     }
 }

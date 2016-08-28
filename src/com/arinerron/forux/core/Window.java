@@ -44,14 +44,11 @@ public class Window {
                 Window.this.recalculate();
             }
             
-            public void componentMoved(ComponentEvent e) {
-            }
+            public void componentMoved(ComponentEvent e) {}
             
-            public void componentShown(ComponentEvent e) {
-            }
+            public void componentShown(ComponentEvent e) {}
             
-            public void componentHidden(ComponentEvent e) {
-            }
+            public void componentHidden(ComponentEvent e) {}
         });
         
         this.panel = new JPanel() {
@@ -66,14 +63,11 @@ public class Window {
         this.frame.add(panel);
         
         Screen screen = new Screen(this) {
-            public void onDraw(Graphics g) {
-            }
+            public void onDraw(Graphics g) {}
             
-            public void onStart() {
-            }
+            public void onStart() {}
             
-            public void onStop() {
-            }
+            public void onStop() {}
         };
         
         this.addScreen(screen);
@@ -166,7 +160,7 @@ public class Window {
     
     public boolean removeScreen(int id) {
         Screen remove = null;
-        for (Screen screen : this.getScreens())
+        for(Screen screen : this.getScreens())
             if (screen.getID() == id)
                 remove = screen;
         
@@ -196,7 +190,7 @@ public class Window {
     }
     
     public boolean setCurrentScreen(int id) {
-        for (int i = 0; i < this.getScreens().size(); i++)
+        for(int i = 0; i < this.getScreens().size(); i++)
             if (this.getScreens().get(i).getID() == id) {
                 this.getCurrentScreen().onStop();
                 this.currentScreen = i + 1;

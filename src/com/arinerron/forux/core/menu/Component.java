@@ -31,8 +31,7 @@ public class Component /* extends Screen */ { // TODO: Add color changing
     // be used! Invalid constructor!"); throw new Exception();} // DON'T USE
     // THIS
     
-    public Component() {
-    }
+    public Component() {}
     
     public void setMenuScreen(MenuScreen screen, int id) { // DON'T CALL
                                                            // DIRECTLY!
@@ -152,7 +151,7 @@ public class Component /* extends Screen */ { // TODO: Add color changing
             int buttonHeight = (int) (this.getWindow().getImageSize().getHeight() / 17.5);
             
             int ys = paddingY;
-            for (int d = 0; d < id + 1; d++) {
+            for(int d = 0; d < id + 1; d++) {
                 if (type != Component.RIGHT && (d != id)) {
                     ys += paddingY;
                     ys += buttonHeight;
@@ -174,11 +173,9 @@ public class Component /* extends Screen */ { // TODO: Add color changing
         }
     }
     
-    public void onKeyPress(KeyEvent e) {
-    }
+    public void onKeyPress(KeyEvent e) {}
     
-    public void onKeyRelease(KeyEvent e) {
-    }
+    public void onKeyRelease(KeyEvent e) {}
     
     public void onDraw(Graphics g) {
         

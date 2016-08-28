@@ -17,12 +17,10 @@ public class TextField extends Component {
     private boolean editable = true;
     private ActionListener event = new ActionListener() {
         @Override
-        public void actionPerformed(ActionEvent e) {
-        }
+        public void actionPerformed(ActionEvent e) {}
     };
     
-    public TextField() {
-    }
+    public TextField() {}
     
     @Override
     public void onDraw(Graphics g2) {
