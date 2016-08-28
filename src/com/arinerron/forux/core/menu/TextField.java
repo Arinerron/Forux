@@ -9,8 +9,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 
-import com.arinerron.forux.core.Screen;
-
 public class TextField extends Component {
     private String text = "";
     private String placeholder = "";
@@ -19,9 +17,7 @@ public class TextField extends Component {
     private boolean editable = true;
     private ActionListener event = new ActionListener() { @Override public void actionPerformed(ActionEvent e) {}};
 
-    public TextField(Screen screen) {
-        super(screen);
-    }
+    public TextField() {}
 
     @Override
     public void onDraw(Graphics g2) {

@@ -4,11 +4,11 @@ import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 
 import com.arinerron.forux.core.Game;
-import com.arinerron.forux.core.Screen;
+import com.arinerron.forux.core.MenuScreen;
 import com.arinerron.forux.core.Window;
 
 public class Component /*extends Screen*/ { // TODO: Add color changing support!
-    private Screen screen = null;
+    private MenuScreen screen = null;
     
     private int id = -1;
     private int x = 0;
@@ -26,17 +26,19 @@ public class Component /*extends Screen*/ { // TODO: Add color changing support!
     
    // /* DO NOT USE THIS CONSTRUCTOR & don't delete this either */ public Component(Window window) throws Exception {super(window); window.getGame().getLogger().error("public Component(Screen screen) must be used! Invalid constructor!"); throw new Exception();} // DON'T USE THIS
     
-    public Component(Screen screen) {
+    public Component() {}
+    
+    public void setScreen(MenuScreen screen, int id) { // DON'T CALL DIRECTLY!
         this.screen = screen;
         
-        this.id = this.getScreen().addComponent(this);
+        this.id = id;
     }
     
     public int getID() {
         return this.id;
     }
     
-    public Screen getScreen() {
+    public MenuScreen getScreen() {
         return this.screen;
     }
 
@@ -126,32 +128,36 @@ public class Component /*extends Screen*/ { // TODO: Add color changing support!
          * padding is the distance between each component vertically (And with buttons and the Component.LEFT and Component.RIGHT horizontally padding, but ignore that for now)
          * 
          */
-        
-        int paddingY = (int) (this.getWindow().getImageSize().getHeight() / 30);
-        int buttonWidth = (int) (this.getWindow().getImageSize().getWidth() / 1.2);
-        int fx = (int) ((this.getWindow().getImageSize().getWidth() / 2) - (buttonWidth / 2));
-        if (type != Component.CENTER)
-            buttonWidth = (buttonWidth / 2) - (paddingY / 2);
-        if (type == Component.RIGHT)
-            fx = (buttonWidth) + (paddingY * 4);
-        int buttonHeight = (int) (this.getWindow().getImageSize().getHeight() / 17.5);
-
-        int ys = paddingY;
-        for (int d = 0; d < id + 1; d++) {
-            if (type != Component.RIGHT && (d != id)) {
-                ys += paddingY;
-                ys += buttonHeight;
-            } else {
-                
+        try {
+            int paddingY = (int) (this.getWindow().getImageSize().getHeight() / 30);
+            int buttonWidth = (int) (this.getWindow().getImageSize().getWidth() / 1.2);
+            int fx = (int) ((this.getWindow().getImageSize().getWidth() / 2) - (buttonWidth / 2));
+            if (type != Component.CENTER)
+                buttonWidth = (buttonWidth / 2) - (paddingY / 2);
+            if (type == Component.RIGHT)
+                fx = (buttonWidth) + (paddingY * 4);
+            int buttonHeight = (int) (this.getWindow().getImageSize().getHeight() / 17.5);
+            
+            int ys = paddingY;
+            for (int d = 0; d < id + 1; d++) {
+                if (type != Component.RIGHT && (d != id)) {
+                    ys += paddingY;
+                    ys += buttonHeight;
+                } else {
+                    
+                }
             }
+            
+            int fy = ys;
+            
+            this.setX(fx);
+            this.setY(fy);
+            this.setWidth(buttonWidth);
+            this.setHeight(buttonHeight);
+        } catch(Exception e) {
+            System.err.println("Try add this Component to the Screen first. Blame this error on @mysterywave, he wanted it to be like this :P");
+            e.printStackTrace();
         }
-
-        int fy = ys;
-
-        this.setX(fx);
-        this.setY(fy);
-        this.setWidth(buttonWidth);
-        this.setHeight(buttonHeight);
     }
     
     public void onKeyPress(KeyEvent e) {}

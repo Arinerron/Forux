@@ -16,7 +16,7 @@ import javax.swing.JPanel;
 public class Window {
     private Game game = null;
     protected JFrame frame = null;
-    private List<Screen> screens = new ArrayList<>();
+    private List<MenuScreen> screens = new ArrayList<>();
     private Dimension imageSize = new Dimension(20, 20);
     private BufferedImage image = null;
     private JPanel panel = null;
@@ -59,7 +59,7 @@ public class Window {
         
         this.frame.add(panel);
         
-        Screen screen = new Screen(this) {
+        MenuScreen screen = new MenuScreen(this) {
             public void onDraw(Graphics g) {}
             public void onStart() {}
             public void onStop() {}
@@ -131,11 +131,10 @@ public class Window {
         this.image = image;
         
         if(update) // should it repaint, or did the image not change?
-            
             panel.repaint();
     }
     
-    public boolean addScreen(Screen screen) {
+    public boolean addScreen(MenuScreen screen) {
         if(!this.getScreens().contains(screen)) {
             screen.setID(this.getScreens().size());
             this.screens.add(screen);
@@ -145,7 +144,7 @@ public class Window {
         return false;
     }
     
-    public boolean removeScreen(Screen screen) {
+    public boolean removeScreen(MenuScreen screen) {
         if(this.getScreens().contains(screen)) {
             this.screens.remove(screen);
             return true;
@@ -155,8 +154,8 @@ public class Window {
     }
     
     public boolean removeScreen(int id) {
-        Screen remove = null;
-        for(Screen screen : this.getScreens())
+        MenuScreen remove = null;
+        for(MenuScreen screen : this.getScreens())
             if(screen.getID() == id)
                 remove = screen;
         
@@ -178,11 +177,11 @@ public class Window {
         return this.getScreens().size();
     }
     
-    public Screen getCurrentScreen() {
+    public MenuScreen getCurrentScreen() {
         return this.getScreens().get(this.currentScreen);
     }
     
-    public boolean setCurrentScreen(Screen screen) {
+    public boolean setCurrentScreen(MenuScreen screen) {
         return setCurrentScreen(screen.getID());
     }
     
@@ -220,7 +219,7 @@ public class Window {
         return this.frame.isResizable();
     }
     
-    public List<Screen> getScreens() {
+    public List<MenuScreen> getScreens() {
         return this.screens;
     }
     

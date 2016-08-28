@@ -62,7 +62,7 @@ public class EventHandler {
             eventListener.onGameStop();
     }
     
-    public void onScreenSet(Screen screen) {
+    public void onScreenSet(MenuScreen screen) {
         for(EventListener eventListener : this.getEventListeners())
             eventListener.onScreenSet(screen);
     }

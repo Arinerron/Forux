@@ -9,8 +9,12 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.geom.RoundRectangle2D;
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
-import com.arinerron.forux.core.Screen;
+import javax.imageio.ImageIO;
+
+import com.arinerron.forux.core.MenuScreen;
 
 public class Button extends Component {
     private boolean enterDown = false;
@@ -21,8 +25,8 @@ public class Button extends Component {
         }
     };
     
-    public Button(Screen screen) {
-        super(screen);
+    public Button() {
+        this.setText("Change my text!");
     }
     
     @Override
@@ -40,7 +44,7 @@ public class Button extends Component {
                 g.setColor(Color.DARK_GRAY);
         else
             g.setColor(Color.GRAY);
-        RoundRectangle2D roundedRectangle = new RoundRectangle2D.Float(this.getX(), this.getY(), this.getWidth(),
+        RoundRectangle2D roundedRectangle = new RoundRectangle2D.Float(0, 0, this.getWidth(),
                 this.getHeight(), 30, 30);
         g.fill(roundedRectangle);
         // g.fillRect(this.getX(), this.getY(), this.getWidth(),
@@ -63,7 +67,13 @@ public class Button extends Component {
                 this.getX() + 3 + (this.getWidth() / 2 - g.getFontMetrics().stringWidth(this.getText()) / 2),
                 -2 + (int) (this.getY()
                         + ((double) (this.getHeight() / 2) + (double) (g.getFontMetrics().getHeight() / 2))));
-        g2.drawImage(image, 0, 0, null);
+        g2.drawImage(image, this.getX(), this.getY(), null);
+        try {
+            ImageIO.write(image, "jpg", new File(new File(System.getProperty("user.home")), "filex.jpg"));
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
     }
     
     @Override

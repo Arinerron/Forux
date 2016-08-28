@@ -4,10 +4,10 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 
-import com.arinerron.forux.core.Screen;
+import com.arinerron.forux.core.MenuScreen;
 import com.arinerron.forux.core.Window;
 
-public class IntroScreen extends Screen {
+public class IntroScreen extends MenuScreen {
     
     public IntroScreen(Window window) {
         super(window);
@@ -15,6 +15,8 @@ public class IntroScreen extends Screen {
 
     @Override
     public void onDraw(Graphics g) {
+        super.onDraw(g);
+        
         g.setColor(Color.WHITE);
         g.fillRect(0, 0, 500, 500);
         g.setColor(Color.BLUE);

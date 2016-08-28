@@ -9,14 +9,14 @@ import java.util.List;
 import com.arinerron.forux.core.menu.Button;
 import com.arinerron.forux.core.menu.Component;
 
-public class Screen {
+public class MenuScreen extends Screen {
     private Window window = null;
     private int id = -1;
     private boolean active = false;
     public final List<Component> components = new ArrayList<>();
     private int focus;
     
-    public Screen(Window window) {
+    public MenuScreen(Window window) {
         this.window = window;
         this.getWindow().addScreen(this);
     }
@@ -79,14 +79,15 @@ public class Screen {
         return this.setFocus(component);
     }
     
-    public int addComponent(Component component) {
+    public int add(Component component) {
         int id = this.getComponents().size();
         this.components.add(component);
+        component.setScreen(this, id);
         
         return id;
     }
     
-    public boolean removeComponent(Component component) {
+    public boolean remove(Component component) {
         return this.components.remove(component);
     }
     
