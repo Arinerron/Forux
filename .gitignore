@@ -2,3 +2,4 @@ bin/
 .classpath
 .project
 Forux/
+.settings/org.eclipse.core.resources.prefs
