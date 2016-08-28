@@ -4,8 +4,8 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 
-import com.arinerron.forux.core.MenuScreen;
 import com.arinerron.forux.core.Window;
+import com.arinerron.forux.core.menu.MenuScreen;
 
 public class IntroScreen extends MenuScreen {
     

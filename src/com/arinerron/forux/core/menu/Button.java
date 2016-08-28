@@ -14,8 +14,6 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-import com.arinerron.forux.core.MenuScreen;
-
 public class Button extends Component {
     private boolean enterDown = false;
     private ActionListener event = new ActionListener() {

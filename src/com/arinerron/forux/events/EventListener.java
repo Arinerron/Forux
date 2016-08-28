@@ -2,7 +2,7 @@ package com.arinerron.forux.events;
 
 import com.arinerron.forux.core.EventHandler;
 import com.arinerron.forux.core.Game;
-import com.arinerron.forux.core.MenuScreen;
+import com.arinerron.forux.core.menu.MenuScreen;
 
 public abstract class EventListener {
     private Game game = null;

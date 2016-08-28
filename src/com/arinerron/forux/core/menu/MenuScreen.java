@@ -1,4 +1,4 @@
-package com.arinerron.forux.core;
+package com.arinerron.forux.core.menu;
 
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
@@ -6,8 +6,9 @@ import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.arinerron.forux.core.menu.Button;
-import com.arinerron.forux.core.menu.Component;
+import com.arinerron.forux.core.Clock;
+import com.arinerron.forux.core.Game;
+import com.arinerron.forux.core.Window;
 
 public class MenuScreen extends Screen {
     private Window window = null;

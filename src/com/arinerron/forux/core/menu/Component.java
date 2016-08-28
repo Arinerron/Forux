@@ -4,7 +4,6 @@ import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 
 import com.arinerron.forux.core.Game;
-import com.arinerron.forux.core.MenuScreen;
 import com.arinerron.forux.core.Window;
 
 public class Component /*extends Screen*/ { // TODO: Add color changing support!
