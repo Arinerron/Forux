@@ -25,14 +25,19 @@ public class Component /* extends Screen */ { // TODO: Add color changing
     public static int LEFT = 1;
     public static int RIGHT = 2;
     
-    // /* DO NOT USE THIS CONSTRUCTOR & don't delete this either */ public
-    // Component(Window window) throws Exception {super(window);
-    // window.getGame().getLogger().error("public Component(Screen screen) must
-    // be used! Invalid constructor!"); throw new Exception();} // DON'T USE
-    // THIS
-    
+    /*
+     * Constructor
+     */
     public Component() {}
     
+    /*
+     * Sets the current {@link MenuScreen} and the ID. Should never be called
+     * directly.
+     * 
+     * @param screen The MenuScreen to use
+     * @param id The component ID
+     * @see MenuScreen
+     */
     public void setMenuScreen(MenuScreen screen, int id) { // DON'T CALL
                                                            // DIRECTLY!
         this.screen = screen;
@@ -40,10 +45,18 @@ public class Component /* extends Screen */ { // TODO: Add color changing
         this.id = id;
     }
     
+    /*
+     * Returns the component ID
+     */
     public int getID() {
         return this.id;
     }
     
+    /*
+     * Returns the {@link MenuScreen}
+     * 
+     * @see MenuScreen
+     */
     public Screen getMenuScreen() {
         return this.screen;
     }

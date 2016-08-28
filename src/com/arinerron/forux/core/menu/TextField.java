@@ -20,6 +20,9 @@ public class TextField extends Component {
         public void actionPerformed(ActionEvent e) {}
     };
     
+    /*
+     * Constructor
+     */
     public TextField() {}
     
     @Override
