@@ -1,4 +1,4 @@
-package com.arinerron.forux.core.menu;
+package com.arinerron.forux.menu;
 
 import java.awt.BasicStroke;
 import java.awt.Color;

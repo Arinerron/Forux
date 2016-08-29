@@ -9,6 +9,7 @@ public class Game {
     private EventHandler eventHandler = null;
     private Settings settings = null;
     private Logger logger = null;
+    private ResourceManager manager = null;
     
     private boolean running = false;
     private boolean paused = false;
@@ -22,6 +23,7 @@ public class Game {
         this.logger = new Logger(this);
         this.window = new Window(this);
         this.clock = new Clock(this);
+        this.manager = new ResourceManager(this);
         
         Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
             @Override
@@ -89,6 +91,10 @@ public class Game {
     
     public Logger getLogger() {
         return this.logger;
+    }
+    
+    public ResourceManager getResourceManager() {
+        return this.manager;
     }
     
     public boolean isRunning() {

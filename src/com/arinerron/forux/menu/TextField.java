@@ -1,4 +1,4 @@
-package com.arinerron.forux.core.menu;
+package com.arinerron.forux.menu;
 
 import java.awt.BasicStroke;
 import java.awt.Color;
@@ -99,7 +99,7 @@ public class TextField extends Component {
                                          // etc....
         if (this.hasFocus() && this.isEnabled() && this.isEditable()) {
             if (this.getMaxLength() > this.getText().length()) {
-                String validString = "^��1!2\"��3$4%5&6/7{(8[)9]=0}?��\\`��q@we���rtzuiop��*+~asdfghjkl����'#<>yxcvbnm��;,:._- ";
+                String validString = "^??????1!2\"??????3$4%5&6/7{(8[)9]=0}???????\\`??????q@we?????????rtzuiop??????*+~asdfghjkl????????????'#<>yxcvbnm??????;,:._- ";
                 if (this.isPrintableChar(e.getKeyChar())
                         && validString.indexOf(String.valueOf(e.getKeyChar()).toLowerCase()) != -1) {
                     if (this.unchanged)
