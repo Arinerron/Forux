@@ -1,6 +1,6 @@
 package com.arinerron.forux.core;
 
-public class Game {
+public class Game { // Game.java
     private String name = "unknown";
     private String file_name = "unknown";
     private String version = "1.0";
