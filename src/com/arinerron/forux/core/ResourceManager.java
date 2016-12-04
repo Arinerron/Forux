@@ -1,11 +1,14 @@
 package com.arinerron.forux.core;
 
+import java.awt.image.BufferedImage;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Scanner;
+
+import javax.imageio.ImageIO;
 
 public class ResourceManager {
     private Game game = null;
@@ -100,9 +103,13 @@ public class ResourceManager {
         return this.audio;
     }
     
-    public File getImageResource(String filename) {
+    public BufferedImage getImageResource(String filename) {
         check();
-        return new File(this.getImageResourceFolder(), filename);
+        try {
+            return ImageIO.read(new File(this.getImageResourceFolder(), filename));
+        } catch (IOException e) {
+            return null;
+        }
     }
     
     public File getAudioResource(String filename) {

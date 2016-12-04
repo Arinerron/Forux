@@ -9,7 +9,7 @@ import javax.sound.sampled.Clip;
 
 public class SoundManager {
     private Game game = null;
-    private Map<String, String> soundfiles = new HashMap<String, String>();
+    private HashMap<String, String> soundfiles = new HashMap<String, String>();
     
     protected SoundManager(Game game) {
         this.game = game;
