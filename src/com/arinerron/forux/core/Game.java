@@ -2,6 +2,7 @@ package com.arinerron.forux.core;
 
 public class Game {
     private String name = "unknown";
+    private String file_name = "unknown";
     private String version = "1.0";
     
     private Window window = null;
@@ -9,13 +10,15 @@ public class Game {
     private EventHandler eventHandler = null;
     private Settings settings = null;
     private Logger logger = null;
-    private ResourceManager manager = null;
+    private ResourceManager resourcemanager = null;
+    private SoundManager soundmanager = null;
     
     private boolean running = false;
     private boolean paused = false;
     
     public Game(String name, String version) {
         this.name = name;
+        this.file_name = name.replace(" ", "_");
         this.version = version;
         
         this.eventHandler = new EventHandler(this);
@@ -23,7 +26,8 @@ public class Game {
         this.logger = new Logger(this);
         this.window = new Window(this);
         this.clock = new Clock(this);
-        this.manager = new ResourceManager(this);
+        this.resourcemanager = new ResourceManager(this);
+        this.soundmanager = new SoundManager(this);
         
         Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
             @Override
@@ -69,6 +73,10 @@ public class Game {
         return this.name;
     }
     
+    public String getFileName() {
+        return this.file_name;
+    }
+    
     public String getVersion() {
         return this.version;
     }
@@ -94,7 +102,11 @@ public class Game {
     }
     
     public ResourceManager getResourceManager() {
-        return this.manager;
+        return this.resourcemanager;
+    }
+    
+    public SoundManager getSoundManager() {
+        return this.soundmanager;
     }
     
     public boolean isRunning() {
