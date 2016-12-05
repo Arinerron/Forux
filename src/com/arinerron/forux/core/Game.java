@@ -65,7 +65,6 @@ public class Game { // Game.java
         this.running = running;
     }
     
-    @Deprecated
     public void setPaused(boolean paused) {
         this.paused = paused;
     }
@@ -114,7 +113,6 @@ public class Game { // Game.java
         return this.running;
     }
     
-    @Deprecated
     public boolean isPaused() {
         return this.paused;
     }

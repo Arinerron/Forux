@@ -65,7 +65,6 @@ public class SoundPlayer {
         }
     }
     
-    /* VOLUME NOT WORKING */
     public void setVolume(float volume) {
         this.controls.setValue((float) Math.min(this.controls.getMaximum(), Math.max(this.controls.getMinimum(), volume)));
     }
@@ -73,7 +72,6 @@ public class SoundPlayer {
     public float getVolume() {
         return this.controls.getValue();
     }
-    /* END VOLUME NOT WORKING */
     
     public boolean isPlaying() {
         return this.clip != null && this.clip.isRunning();
