@@ -6,6 +6,8 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Scanner;
 
 import javax.imageio.ImageIO;
@@ -14,18 +16,22 @@ public class ResourceManager {
     private Game game = null;
     
     private File home = null;
+    private File config = null;
+    private File logs = null;
+    private File log = null;
     private File resources = null;
     private File images = null;
     private File audio = null;
-    private File config = null;
     
     protected ResourceManager(Game game) {
         this.game = game;
         this.home = new File(new File(System.getProperty("user.home")), "." + this.getGame().getFileName());
-        this.config = new File(home, "config");
+        this.config = new File(home, "config.json");
+        this.logs = new File(home, "logs");
+        this.log = new File(logs, new SimpleDateFormat("MM-dd-yyyy_HH-mm-ss").format(Calendar.getInstance().getTime()) + ".txt");
         this.resources = new File(home, "resources");
-        this.images = new File(home, "images");
-        this.audio = new File(home, "audio");
+        this.images = new File(this.resources, "images");
+        this.audio = new File(this.resources, "audio");
         
         check();
     }
@@ -38,6 +44,8 @@ public class ResourceManager {
         try {
             home.mkdirs();
             config.createNewFile();
+            logs.mkdirs();
+            log.createNewFile();
             resources.mkdirs();
             images.mkdirs();
             audio.mkdirs();
@@ -86,6 +94,16 @@ public class ResourceManager {
     public File getConfigurationFile() {
         check();
         return this.config;
+    }
+    
+    public File getLogsFolder() {
+        check();
+        return this.logs;
+    }
+    
+    public File getLogFile() {
+        check();
+        return this.log;
     }
     
     public File getResourcesFolder() {

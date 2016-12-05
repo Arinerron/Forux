@@ -1,5 +1,6 @@
 package com.arinerron.forux.core;
 
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
@@ -19,7 +20,14 @@ public class Logger {
         if (this.getLoggerType() % 2 == 0)
             System.out.println(o);
         if (this.getLoggerType() > 0)
-            ;// make write to file later
+            try {
+                this.getGame().getResourceManager().appendFile(this.getGame().getResourceManager().getLogFile(), o);
+            } catch (Exception e) {
+                this.setLoggerType(Logger.PRINT_TO_CONSOLE);
+                this.error("Disabled logging to file due to file writing error");
+                this.error(e);
+                this.log(o);
+            }
     }
     
     public void log(String type, Object o) {

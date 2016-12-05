@@ -96,6 +96,14 @@ public class Window {
         return this.game;
     }
     
+    public void setIcon(BufferedImage image) {
+        try {
+            frame.setIconImage(image);
+        } catch(Exception e) {
+            this.getGame().getLogger().error(e);
+        }
+    }
+    
     public void setVisible(boolean visible) { // will start game if !running
         if (!this.getGame().isRunning())
             this.getGame().start();
@@ -201,6 +209,10 @@ public class Window {
             }
         
         return false;
+    }
+    
+    public BufferedImage getIcon() {
+        return (BufferedImage) this.frame.getIconImage();
     }
     
     public boolean isVisible() {

@@ -18,7 +18,7 @@ public class Game { // Game.java
     
     public Game(String name, String version) {
         this.name = name;
-        this.file_name = name.replace(" ", "_");
+        this.file_name = name.replace(" ", "_").toLowerCase();
         this.version = version;
         
         this.eventHandler = new EventHandler(this);
@@ -65,6 +65,7 @@ public class Game { // Game.java
         this.running = running;
     }
     
+    @Deprecated
     public void setPaused(boolean paused) {
         this.paused = paused;
     }
@@ -113,6 +114,7 @@ public class Game { // Game.java
         return this.running;
     }
     
+    @Deprecated
     public boolean isPaused() {
         return this.paused;
     }
