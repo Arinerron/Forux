@@ -66,4 +66,14 @@ public class EventHandler {
         for(EventListener eventListener : this.getEventListeners())
             eventListener.onScreenSet(screen);
     }
+    
+    public void onTick(int tick) {
+        for(EventListener eventListener : this.getEventListeners())
+            eventListener.onTick(tick);
+    }
+    
+    public void onIndex(int index) {
+        for(EventListener eventListener : this.getEventListeners())
+            eventListener.onIndex(index);
+    }
 }

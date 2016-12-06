@@ -60,11 +60,14 @@ public class Clock {
     
     private int tick() {
         this.ticks++;
+        this.getGame().getWindow().getCurrentScreen().onTick(this.getTicks());
+        this.getGame().getEventHandler().onTick(this.getTicks());
         return this.getTicks();
     }
     
     protected int index() {
         this.index = this.ticks;
+        this.getGame().getEventHandler().onIndex(this.getIndex());
         return this.getIndex();
     }
     

@@ -57,4 +57,6 @@ public class Screen {
     public void onStop() {}
     
     public void onStart() {}
+    
+    public void onTick(int tick) {}
 }

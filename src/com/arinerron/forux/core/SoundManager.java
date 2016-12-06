@@ -31,7 +31,7 @@ public class SoundManager {
         this.getSounds().clear();
     }
     
-    public Map<String, String> getSounds() {
+    public HashMap<String, String> getSounds() {
         return this.soundfiles;
     }
     

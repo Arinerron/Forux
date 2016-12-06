@@ -39,4 +39,8 @@ public abstract class EventListener {
     public abstract void onGameError(String message);
     
     public abstract void onScreenSet(Screen screen);
+    
+    public abstract void onTick(int tick);
+    
+    public abstract void onIndex(int index);
 }
