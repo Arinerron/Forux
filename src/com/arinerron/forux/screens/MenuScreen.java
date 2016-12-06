@@ -50,7 +50,7 @@ public class MenuScreen extends Screen {
     public int add(Component component) {
         int id = this.getComponents().size();
         this.components.add(component);
-        component.setScreen(this, id);
+        component.setMenuScreen(this, id);
         
         return id;
     }

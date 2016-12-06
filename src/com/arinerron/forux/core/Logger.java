@@ -48,7 +48,7 @@ public class Logger {
     }
     
     public void error(Exception e) {
-        log("ERROR", e.getMessage());
+        log("ERROR", e.toString());
         e.printStackTrace();
     }
     

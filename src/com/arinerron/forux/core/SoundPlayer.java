@@ -21,7 +21,7 @@ public class SoundPlayer {
             this.clip = AudioSystem.getClip();
             this.clip.open(AudioSystem.getAudioInputStream(file.toURI().toURL().openStream()));
             this.controls = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
-        } catch(Exception e) {
+        } catch (Exception e) {
             this.getGame().getLogger().error(e);
         }
     }
@@ -33,7 +33,6 @@ public class SoundPlayer {
     
     public void stop() {
         this.position = 0;
-        
         this.clip.stop();
         this.clip.flush();
     }
@@ -58,7 +57,7 @@ public class SoundPlayer {
     public void dispose() {
         try {
             this.clip.close();
-        } catch(Exception e) {
+        } catch (Exception e) {
             this.getGame().getLogger().error(e);
         } finally {
             this.clip = null;
@@ -66,7 +65,8 @@ public class SoundPlayer {
     }
     
     public void setVolume(float volume) {
-        this.controls.setValue((float) Math.min(this.controls.getMaximum(), Math.max(this.controls.getMinimum(), volume)));
+        this.controls
+                .setValue((float) Math.min(this.controls.getMaximum(), Math.max(this.controls.getMinimum(), volume)));
     }
     
     public float getVolume() {

@@ -39,10 +39,8 @@ public class Component /* extends Screen */ { // TODO: Add color changing
      * @param id The component ID
      * @see MenuScreen
      */
-    public void setMenuScreen(MenuScreen screen, int id) { // DON'T CALL
-                                                           // DIRECTLY!
+    public void setMenuScreen(MenuScreen screen, int id) { // DON'T CALL DIRECTLY!
         this.screen = screen;
-        
         this.id = id;
     }
     
