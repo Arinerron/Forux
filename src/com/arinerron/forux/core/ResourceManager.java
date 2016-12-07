@@ -17,6 +17,7 @@ public class ResourceManager {
     
     private File home = null;
     private File config = null;
+    private File screenshots = null;
     private File logs = null;
     private File log = null;
     private File resources = null;
@@ -27,6 +28,7 @@ public class ResourceManager {
         this.game = game;
         this.home = new File(new File(System.getProperty("user.home")), "." + this.getGame().getFileName());
         this.config = new File(home, "config.json");
+        this.screenshots = new File(home, "screenshots");
         this.logs = new File(home, "logs");
         this.log = new File(logs, new SimpleDateFormat("MM-dd-yyyy_HH-mm-ss").format(Calendar.getInstance().getTime()) + ".txt");
         this.resources = new File(home, "resources");
@@ -44,6 +46,7 @@ public class ResourceManager {
         try {
             home.mkdirs();
             config.createNewFile();
+            screenshots.mkdirs();
             logs.mkdirs();
             log.createNewFile();
             resources.mkdirs();
@@ -94,6 +97,11 @@ public class ResourceManager {
     public File getConfigurationFile() {
         check();
         return this.config;
+    }
+    
+    public File getScreenshotsFolder() {
+        check();
+        return this.screenshots;
     }
     
     public File getLogsFolder() {
