@@ -143,7 +143,7 @@ public class Window {
         boolean update = this.getImage() != image;
         this.image = image;
         
-        if (update) // should it repaint, or did the image not change?
+        if (update && this.getGame().isRunning()) // should it repaint, or did the image not change?
             panel.repaint();
     }
     
