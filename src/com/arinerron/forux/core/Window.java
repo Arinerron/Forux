@@ -6,6 +6,8 @@ import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
@@ -40,6 +42,7 @@ public class Window {
         this.frame.setLocationRelativeTo(null);
         this.frame.setResizable(false);
         this.frame.addComponentListener(new ComponentListener() {
+            @Override
             public void componentResized(ComponentEvent e) {
                 Window.this.recalculate();
             }
@@ -59,6 +62,23 @@ public class Window {
                             (int) Window.this.nh, null);
             }
         };
+        this.panel.setFocusable(true);
+        this.panel.addKeyListener(new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+                Window.this.getGame().getKeyManager().onKeyPress(e.getKeyCode());
+                Window.this.getCurrentScreen().onKeyPress(e);
+            }
+            
+            @Override
+            public void keyReleased(KeyEvent e) {
+                Window.this.getGame().getKeyManager().onKeyRelease(e.getKeyCode());
+                Window.this.getCurrentScreen().onKeyRelease(e);
+                Window.this.getEventHandler()
+            }
+            
+            public void keyPressed(KeyEvent e) {}
+        });
         
         this.frame.add(panel);
         

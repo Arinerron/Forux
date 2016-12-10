@@ -1,5 +1,8 @@
 package com.arinerron.forux.events;
 
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+
 import com.arinerron.forux.core.EventHandler;
 import com.arinerron.forux.core.Game;
 import com.arinerron.forux.core.Screen;
@@ -43,4 +46,8 @@ public abstract class EventListener {
     public abstract void onTick(int tick);
     
     public abstract void onIndex(int index);
+    
+    public abstract void onKeyPress(KeyEvent event);
+    
+    public abstract void onKeyRelease(KeyEvent event);
 }

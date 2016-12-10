@@ -1,5 +1,7 @@
 package com.arinerron.forux.core;
 
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -75,5 +77,15 @@ public class EventHandler {
     public void onIndex(int index) {
         for(EventListener eventListener : this.getEventListeners())
             eventListener.onIndex(index);
+    }
+    
+    public void onKeyPress(KeyEvent e) {
+        for(EventListener eventListener : this.getEventListeners())
+            eventListener.onKeyPress(e);
+    }
+    
+    public void onKeyRelease(KeyEvent e) {
+        for(EventListener eventListener : this.getEventListeners())
+            eventListener.onKeyRelease(e);
     }
 }

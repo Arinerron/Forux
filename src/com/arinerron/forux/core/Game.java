@@ -12,6 +12,7 @@ public final class Game { // Game.java
     private Logger logger = null;
     private ResourceManager resourcemanager = null;
     private SoundManager soundmanager = null;
+    private KeyManager keymanager = null;
     
     private boolean running = false;
     private boolean paused = false;
@@ -28,6 +29,7 @@ public final class Game { // Game.java
         this.clock = new Clock(this);
         this.resourcemanager = new ResourceManager(this);
         this.soundmanager = new SoundManager(this);
+        this.keymanager = new KeyManager(this);
         
         Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
             @Override
@@ -107,6 +109,10 @@ public final class Game { // Game.java
     
     public SoundManager getSoundManager() {
         return this.soundmanager;
+    }
+    
+    public KeyManager getKeyManager() {
+        return this.keymanager;
     }
     
     public boolean isRunning() {

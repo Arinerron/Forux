@@ -8,6 +8,8 @@ public class Screen {
     private int id = -1;
     private boolean active = false;
     
+    /* Functions */
+    
     public Screen(Window window) {
         this.window = window;
         this.getWindow().addScreen(this);
@@ -41,6 +43,16 @@ public class Screen {
     public boolean isActive() {
         return this.active;
     }
+    
+    /* Utilities */
+    
+    public boolean inRectangle(int x, int y, int width, int height, int pointx, int pointy) {
+        if(pointx >= x && pointx <= x + width && pointy >= y && pointy <= y + height)
+            return true;
+        return false;
+    }
+    
+    /* Events */
     
     public void onDraw(Graphics g) {}
     
