@@ -15,7 +15,7 @@ public class KeyManager {
     public List<Character> getPressedKeys() {
         List<Character> chars2 = new ArrayList<>();
         for(int c : chars)
-            chars2.add((Character)c);
+            chars2.add(new Character((char)c));
         
         return chars2;
     }

@@ -68,14 +68,14 @@ public class Window {
             public void keyTyped(KeyEvent e) {
                 Window.this.getGame().getKeyManager().onKeyPress(e.getKeyCode());
                 Window.this.getCurrentScreen().onKeyPress(e);
-                Window.this.getEventHandler().onKeyPress(e);
+                Window.this.getGame().getEventHandler().onKeyPress(e);
             }
             
             @Override
             public void keyReleased(KeyEvent e) {
                 Window.this.getGame().getKeyManager().onKeyRelease(e.getKeyCode());
                 Window.this.getCurrentScreen().onKeyRelease(e);
-                Window.this.getEventHandler().onKeyRelease(e);
+                Window.this.getGame().getEventHandler().onKeyRelease(e);
             }
             
             public void keyPressed(KeyEvent e) {}
