@@ -3,7 +3,7 @@
 
 An in-development, simple, lightweight game library.
 
-# Forux Documentation
+# Documentation
 ## Game.java
 ```
 Game game = new Game(String name, String version); // init
