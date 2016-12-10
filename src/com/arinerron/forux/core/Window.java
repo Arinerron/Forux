@@ -62,7 +62,6 @@ public class Window {
                             (int) Window.this.nh, null);
             }
         };
-        this.panel.setFocusable(true);
         this.panel.addKeyListener(new KeyListener() {
             @Override
             public void keyTyped(KeyEvent e) {
@@ -80,6 +79,7 @@ public class Window {
             
             public void keyPressed(KeyEvent e) {}
         });
+        this.panel.setFocusable(true);
         
         this.frame.add(panel);
         
@@ -125,7 +125,7 @@ public class Window {
         }
     }
     
-    public void setVisible(boolean visible) { // will start game if !running
+    public void setVisible(boolean visible) {
         if (!this.getGame().isRunning())
             this.getGame().start();
         
