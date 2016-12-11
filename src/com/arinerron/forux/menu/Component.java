@@ -168,7 +168,7 @@ public class Component /* extends Screen */ { // TODO: Add color changing
                     ys += paddingY;
                     ys += buttonHeight;
                 } else {
-                    
+                    // i dunno why thisi s empty and I can't remember.
                 }
             }
             

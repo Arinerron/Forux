@@ -36,7 +36,7 @@ public class Window {
     protected Window(Game game) {
         this.game = game;
         
-        this.frame = new JFrame(this.getGame().getName());
+        this.frame = new JFrame(this.getGame().getName() + " " + this.getGame().getVersion());
         this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.frame.setBackground(Color.BLACK);
         this.frame.setLocationRelativeTo(null);
