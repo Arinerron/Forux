@@ -222,7 +222,7 @@ public class Window {
         for(int i = 0; i < this.getScreens().size(); i++)
             if (this.getScreens().get(i).getID() == id) {
                 this.getCurrentScreen().onStop();
-                this.currentScreen = i + 1;
+                this.currentScreen = i;
                 this.getGame().getClock().index();
                 this.getCurrentScreen().onStart();
                 this.getGame().getEventHandler().onScreenSet(this.getScreens().get(i));

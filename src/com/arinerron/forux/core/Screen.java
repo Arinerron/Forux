@@ -12,11 +12,10 @@ public class Screen {
     
     public Screen(Window window) {
         this.window = window;
-        this.getWindow().addScreen(this);
     }
     
-    public void setID(int id) {
-        if (id == -1)
+    protected void setID(int id) {
+        if (this.id == -1)
             this.id = id;
     }
     
