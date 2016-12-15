@@ -11,6 +11,9 @@ public class Clock {
     private Game game = null;
     private int ticks = 0;
     private int index = 0;
+    private int renderspeed = 20;
+    private int tickspeed = this.renderspeed;
+    private boolean running = true;
     private Timer timer = null;
     
     protected Clock(Game game) {
@@ -20,12 +23,12 @@ public class Clock {
     protected synchronized void start() {
         this.timer = new Timer();
         
-        int delay = (int) (1000 / this.getGame().getSettings().getInt("render_speed"));
+        int delay = (int) (1000 / this.getRenderSpeed());
         
         this.timer.scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run() {
-                if (!Clock.this.getGame().isPaused())
+                if (!Clock.this.getGame().isPaused() && Clock.this.running)
                     if (Clock.this.getGame().isRunning())
                         Clock.this.update();
                     else {
@@ -34,15 +37,33 @@ public class Clock {
                     }
             }
         }, delay, delay);
+        
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                reload(); // if you want to know why I did this, just message Arinerron.
+            }
+            
+            public void reload() {
+                Clock.this.tick();
+                    
+                if(Clock.this.getGame().isRunning() && running)
+                    new Timer().schedule(new TimerTask() {
+                        @Override
+                        public void run() {
+                            reload();
+                        }
+                    }, Clock.this.getTickSpeed());
+            }
+        }).start();
     }
     
     public synchronized void stop() {
         this.timer.cancel();
+        this.running = false;
     }
     
     private void update() {
-        this.tick();
-        
         BufferedImage image = new BufferedImage((int) this.getWindow().getImageSize().getWidth(),
                 (int) this.getWindow().getImageSize().getHeight(), BufferedImage.TYPE_INT_ARGB);
         Graphics g = image.getGraphics();
@@ -50,6 +71,22 @@ public class Clock {
         g.dispose();
         
         this.getWindow().setImage(image);
+    }
+    
+    public void setRenderSpeed(int speed) {
+        this.renderspeed = speed;
+    }
+    
+    public void setTickSpeed(int speed) {
+        this.tickspeed = speed;
+    }
+    
+    public int getRenderSpeed() {
+        return this.renderspeed;
+    }
+    
+    public int getTickSpeed() {
+        return this.tickspeed;
     }
     
     public String getTimestamp() {
