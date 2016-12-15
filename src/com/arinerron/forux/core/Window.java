@@ -8,6 +8,9 @@ import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
@@ -65,7 +68,7 @@ public class Window {
         };
         this.panel.addKeyListener(new KeyListener() {
             @Override
-            public void keyTyped(KeyEvent e) {
+            public void keyPressed(KeyEvent e) {
                 Window.this.getGame().getKeyManager().onKeyPress(e.getKeyCode());
                 Window.this.getCurrentScreen().onKeyPress(e);
                 Window.this.getGame().getEventHandler().onKeyPress(e);
@@ -78,9 +81,41 @@ public class Window {
                 Window.this.getGame().getEventHandler().onKeyRelease(e);
             }
             
-            public void keyPressed(KeyEvent e) {}
+            public void keyTyped(KeyEvent e) {}
         });
-        this.panel.setFocusable(true);
+        this.panel.addMouseListener(new MouseListener() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                Window.this.getCurrentScreen().onMousePress(e.getX(), e.getY(), e.getButton());
+            }
+            
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                Window.this.getCurrentScreen().onMouseRelease(e.getX(), e.getY(), e.getButton());
+            }
+            
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                Window.this.getCurrentScreen().onMouseEnter(e.getX(), e.getY());
+            }
+            
+            @Override
+            public void mouseExited(MouseEvent e) {
+                Window.this.getCurrentScreen().onMouseExit(e.getX(), e.getY());
+            }
+            
+            public void mouseClicked(MouseEvent e) {}
+        });
+        this.panel.addMouseMotionListener(new MouseMotionListener() {
+            @Override
+            public void mouseMoved(MouseEvent e) {
+                Window.this.getCurrentScreen().onMouseMotion(e.getX(), e.getY());
+            }
+            
+            public void mouseDragged(MouseEvent e) {}
+        });
+        
+        this.panel.setFocusable(true); // is it supposed to requestFocus?
         
         this.frame.add(panel);
         

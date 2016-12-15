@@ -55,9 +55,13 @@ public class Screen {
     
     public void onDraw(Graphics g) {}
     
-    public void onMouseDown(int x, int y) {}
+    public void onMousePress(int x, int y, int button) {}
     
-    public void onMouseUp(int x, int y) {}
+    public void onMouseRelease(int x, int y, int button) {}
+    
+    public void onMouseEnter(int x, int y) {}
+    
+    public void onMouseExit(int x, int y) {}
     
     public void onMouseMotion(int x, int y) {}
     
