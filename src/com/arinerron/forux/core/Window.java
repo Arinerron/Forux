@@ -191,6 +191,13 @@ public class Window {
         this.frame.setResizable(resizable);
     }
 
+    public void setUndecorated(boolean undecorated) {
+        boolean visible = this.frame.isVisible();
+        this.frame.dispose();
+        this.frame.setUndecorated(undecorated);
+        this.frame.setVisible(visible);
+    }
+
     public void setImageSize(int width, int height) {
         this.imageSize = new Dimension(width, height);
         this.recalculate();
@@ -202,13 +209,6 @@ public class Window {
 
         if (update && this.getGame().isRunning()) // should it repaint, or did the image not change?
             panel.repaint();
-    }
-
-    protected void setUndecorated(boolean undecorated) {
-        boolean visible = this.frame.isVisible();
-        this.frame.dispose();
-        this.frame.setUndecorated(undecorated);
-        this.frame.setVisible(visible);
     }
 
     public boolean addScreen(Screen screen) {
