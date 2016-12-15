@@ -41,6 +41,15 @@ public class Window {
         this.game = game;
 
         this.frame = new JFrame(this.getGame().getName() + " " + this.getGame().getVersion());
+        this.panel = new JPanel() {
+            @Override
+            public void paintComponent(Graphics g) {
+                if (Window.this.getImage() != null)
+                    g.drawImage(Window.this.getImage(), Window.this.gapX, Window.this.gapY, (int) Window.this.nw,
+                            (int) Window.this.nh, null);
+            }
+        };
+
         this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.frame.setBackground(Color.BLACK);
         this.frame.setSize(400, 400);
@@ -60,14 +69,6 @@ public class Window {
             public void componentHidden(ComponentEvent e) {}
         });
 
-        this.panel = new JPanel() {
-            @Override
-            public void paintComponent(Graphics g) {
-                if (Window.this.getImage() != null)
-                    g.drawImage(Window.this.getImage(), Window.this.gapX, Window.this.gapY, (int) Window.this.nw,
-                            (int) Window.this.nh, null);
-            }
-        };
         this.panel.addKeyListener(new KeyListener() {
             @Override
             public void keyPressed(KeyEvent e) {
