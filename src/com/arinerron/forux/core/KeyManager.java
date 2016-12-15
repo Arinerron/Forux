@@ -42,7 +42,7 @@ public class KeyManager {
     }
 
     protected void onKeyRelease(int c) {
-        this.chars.remove(c);
+        this.chars.remove(Integer.valueOf(c));
     }
 
     protected void onMousePress(int b) {
@@ -50,7 +50,7 @@ public class KeyManager {
     }
 
     protected void onMouseRelease(int b) {
-        this.buttons.remove(b);
+        this.buttons.remove(Integer.valueOf(b));
     }
 
     public Game getGame() {
