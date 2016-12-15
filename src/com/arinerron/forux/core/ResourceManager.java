@@ -32,7 +32,7 @@ public class ResourceManager {
         this.resources = new File(home, "resources");
         this.images = new File(this.resources, "images");
         this.audio = new File(this.resources, "audio");
-        
+
         check();
     }
 
@@ -43,7 +43,8 @@ public class ResourceManager {
     private void check() {
         try {
             home.mkdirs();
-            config.createNewFile();
+            if(!config.exists())
+                writeFile(config, "{}");
             screenshots.mkdirs();
             logs.mkdirs();
             log.createNewFile();
@@ -57,6 +58,9 @@ public class ResourceManager {
 
     public String readFile(File file) throws IOException {
         check();
+
+        if(!file.exists())
+            file.createNewFile();
 
         StringBuilder fileContents = new StringBuilder((int) file.length());
         Scanner scanner = new Scanner(file);
@@ -73,6 +77,9 @@ public class ResourceManager {
 
     public void writeFile(File file, Object contents) throws IOException {
         check();
+
+        if(!file.exists())
+            file.createNewFile();
 
         PrintWriter writer = new PrintWriter(file, "UTF-8");
         writer.println(contents + "");
