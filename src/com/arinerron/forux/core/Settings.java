@@ -11,7 +11,7 @@ public class Settings {
 
     protected Settings(Game game) {
         this.game = game;
-
+        
         this.loadDefaults();
     }
 
