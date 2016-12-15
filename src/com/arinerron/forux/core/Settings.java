@@ -35,6 +35,10 @@ public class Settings {
         this.settings.put(key, val);
     }
     
+    public String getSettings() {
+        return this.settings.toString(4);
+    }
+    
     public Object get(String key) {
         return settings.get(key);
     }

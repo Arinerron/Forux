@@ -25,7 +25,7 @@ public class ResourceManager {
     protected ResourceManager(Game game) {
         this.game = game;
         this.home = new File(new File(System.getProperty("user.home")), "." + this.getGame().getFileName());
-        this.config = new File(home, "config.json");
+        this.config = new File(home, "settings.json");
         this.screenshots = new File(home, "screenshots");
         this.logs = new File(home, "logs");
         this.log = new File(logs, "log_" + this.getGame().getClock().getTimestamp() + ".txt");
