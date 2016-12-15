@@ -42,6 +42,8 @@ window.removeScreen(int id) // remove screen by id
 window.setCurrentScreen(Screen screen); // set current screen by screen
 window.setCurrentScreen(int id); // set current screen by id
 
+Game game = window.getGame(); // get Game instance
+String filelocation = window.screenshot(); // saves a screenshot of the window in the screenshots folder
 int screenCount = window.getScreenCount(); // get number of screens
 boolean visible = window.isVisible(); // is window visible
 boolean fullscreen = window.isFullscreen(); // is window fullscreen
@@ -52,17 +54,16 @@ List<Screen> screen = window.getScreens(); // get all screens
 BufferedImage image = window.getImage(); // get current image
 Screen screen = window.getCurrentScreen(); // get current Screen instance
 Screen screen = window.getScreen(int id); // get screen by id
-Game game = window.getGame(); // get Game instance
 ```
 
 ## Clock.java
 ```
 Clock clock = game.getClock(); // get Clock instance
 
+Game game = clock.getGame(); // get Game instance
 int ticks = clock.getTicks(); // get total ticks
 int index = clock.getIndex(); // get tick count when screen changed
 int tickssinceindex = clock.getTicksSinceIndex(); // get ticks since last index
-Game game = clock.getGame(); // get Game instance
 Window window = clock.getWindow(); // get Window instance
 ```
 
