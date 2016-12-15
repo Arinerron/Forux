@@ -115,7 +115,9 @@ public class Window {
             public void mouseDragged(MouseEvent e) {}
         });
         
+        this.panel.setBackground(Color.BLACK);
         this.panel.setFocusable(true); // is it supposed to requestFocus?
+        this.panel.requestFocus();
         
         this.frame.add(panel);
         
