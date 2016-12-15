@@ -23,11 +23,11 @@ public final class Game { // Game.java
         this.version = version;
 
         this.eventHandler = new EventHandler(this);
+        this.clock = new Clock(this);
         this.resourcemanager = new ResourceManager(this);
         this.settings = new Settings(this);
         this.logger = new Logger(this);
         this.window = new Window(this);
-        this.clock = new Clock(this);
         this.soundmanager = new SoundManager(this);
         this.keymanager = new KeyManager(this);
 
