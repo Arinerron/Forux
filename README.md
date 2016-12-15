@@ -171,3 +171,15 @@ boolean playing = player.isPlaying(); // is sound playing
 SoundManager soundmanager = player.getSoundManager(); // returns SoundManager instance
 File file = player.getFile(); // returns source file
 ```
+
+## KeyManager.java
+```
+KeyManager keymanager = game.getKeyManager(); // returns KeyManager instance
+
+Game game = keymanager.getGame(); // returns Game instance
+List<Character> keys = keymanager.getPressedKeys(); // returns List of chars that are pressed
+boolean pressed = keymanager.isKeyPressed(char key); // is key pressed (by char)?
+boolean pressed2 = keymanager.isKeyPressed(int key); // is key pressed (by int)?
+List<Integer> buttons = keymanager.getPressedMouseButtons(); // returns List of mouse buttons that are pressed
+boolean pressed3 = keymanager.isMouseButtonPressed(int button); // is mouse button pressed? (1=left 2=middle 3=right mouse button)
+```

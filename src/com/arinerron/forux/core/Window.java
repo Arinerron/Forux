@@ -86,11 +86,13 @@ public class Window {
         this.panel.addMouseListener(new MouseListener() {
             @Override
             public void mousePressed(MouseEvent e) {
+                Window.this.getGame().getKeyManager().onMousePress(e.getButton());
                 Window.this.getCurrentScreen().onMousePress(e.getX(), e.getY(), e.getButton());
             }
 
             @Override
             public void mouseReleased(MouseEvent e) {
+                Window.this.getGame().getKeyManager().onMouseRelease(e.getButton());
                 Window.this.getCurrentScreen().onMouseRelease(e.getX(), e.getY(), e.getButton());
             }
 
@@ -121,13 +123,7 @@ public class Window {
 
         this.frame.add(panel);
 
-        Screen screen = new Screen(this) {
-            public void onDraw(Graphics g) {}
-
-            public void onStart() {}
-
-            public void onStop() {}
-        };
+        Screen screen = new Screen(this);
 
         this.addScreen(screen);
         this.currentScreen = 0; // black screen

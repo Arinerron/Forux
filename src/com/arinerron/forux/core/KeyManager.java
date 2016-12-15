@@ -7,6 +7,7 @@ import java.util.List;
 public class KeyManager {
     private Game game = null;
     private List<Integer> chars = new ArrayList<>();
+    private List<Integer> buttons = new ArrayList<>();
 
     protected KeyManager(Game game) {
         this.game = game;
@@ -20,6 +21,10 @@ public class KeyManager {
         return chars2;
     }
 
+    public List<Integer> getPressedMouseButtons() {
+        return this.buttons;
+    }
+
     public boolean isKeyPressed(char c) {
         return this.chars.contains(KeyStroke.getKeyStroke(c));
     }
@@ -28,12 +33,24 @@ public class KeyManager {
         return this.chars.contains(c);
     }
 
+    public boolean isMouseButtonPressed(int button) {
+        return this.buttons.contains(button);
+    }
+
     protected void onKeyPress(int c) {
         this.chars.add(c);
     }
 
     protected void onKeyRelease(int c) {
         this.chars.remove(c);
+    }
+
+    protected void onMousePress(int b) {
+        this.buttons.add(b);
+    }
+
+    protected void onMouseRelease(int b) {
+        this.buttons.remove(b);
     }
 
     public Game getGame() {
