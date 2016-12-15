@@ -16,6 +16,7 @@ public final class Game { // Game.java
 
     private boolean running = false;
     private boolean paused = false;
+    private boolean firstrun = false;
 
     public Game(String name, String version) {
         this.name = name;
@@ -60,6 +61,14 @@ public final class Game { // Game.java
             this.getEventHandler().onGameStop();
 
         }
+    }
+
+    protected void setFirstRun(boolean firstrun) {
+        this.firstrun = firstrun;
+    }
+
+    public boolean isFirstRun() {
+        return this.firstrun;
     }
 
     private void setRunning(boolean running) {

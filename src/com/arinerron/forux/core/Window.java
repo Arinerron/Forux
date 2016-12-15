@@ -43,6 +43,8 @@ public class Window {
         this.frame = new JFrame(this.getGame().getName() + " " + this.getGame().getVersion());
         this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.frame.setBackground(Color.BLACK);
+        this.frame.setSize(400, 400);
+        this.setFullscreen(true);
         this.frame.setLocationRelativeTo(null);
         this.frame.setResizable(false);
         this.frame.addComponentListener(new ComponentListener() {
@@ -201,6 +203,13 @@ public class Window {
             panel.repaint();
     }
 
+    protected void setUndecorated(boolean undecorated) {
+        boolean visible = this.frame.isVisible();
+        this.frame.dispose();
+        this.frame.setUndecorated(undecorated);
+        this.frame.setVisible(visible);
+    }
+
     public boolean addScreen(Screen screen) {
         if (!this.getScreens().contains(screen)) {
             screen.setID(this.getScreens().size());
@@ -293,6 +302,10 @@ public class Window {
 
     public boolean isResizable() {
         return this.frame.isResizable();
+    }
+
+    public boolean isUndecorated() {
+        return this.frame.isUndecorated();
     }
 
     public List<Screen> getScreens() {

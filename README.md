@@ -19,6 +19,7 @@ String name = game.getName(); // returns game name
 String version = game.getVersion(); // returns game version
 boolean running = game.isRunning() // is game running
 boolean paused = game.isPaused(); // is game paused
+boolean firstrun = game.isFirstRun(); // is this the first time the game has run
 
 Window window = game.getWindow(); // returns Window instance
 Clock clock = game.getClock(); // returns Clock instance
@@ -38,6 +39,8 @@ window.setSize(int width, int height); // set window size
 window.setFullscreen(boolean fullscreen); // make window fullscreen or not
 window.setLocation(int x, int y); // set window location
 window.setFrameSize(int width, int height); // set size of screen
+window.setResizable(boolean resizable); // set resizable or not
+window.setUndecorated(boolean undecorated); // set whether or not window is undecorated
 
 window.addScreen(Screen screen); // add screen
 window.removeScreen(Screen screen) // remove screen by screen
@@ -53,6 +56,8 @@ boolean fullscreen = window.isFullscreen(); // is window fullscreen
 Dimension size = window.getSize(); // returns window size
 Dimension frameSize = window.getFrameSize(); // returns window-screen size
 Point location = window.getLocation(); // returns window location
+boolean resizable = window.isResizable(); // is window resizable
+boolean undecorated = window.isUndecorated(); // is window undecorated
 List<Screen> screen = window.getScreens(); // returns all screens
 BufferedImage image = window.getImage(); // returns current image
 Screen screen = window.getCurrentScreen(); // returns current Screen instance

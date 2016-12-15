@@ -42,6 +42,8 @@ public class ResourceManager {
 
     private void check() {
         try {
+            if(!home.exists())
+                this.getGame().setFirstRun(true);
             home.mkdirs();
             if(!config.exists())
                 writeFile(config, "{}");
