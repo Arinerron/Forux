@@ -1,2 +1,2 @@
 language: java
-script: cd src/ && ls && clear && javac com/arinerron/forux/core/Game.java
+script: cd src/ && ls && clear && javac -cp .:../lib/java-json.jar com/arinerron/forux/core/Game.java
