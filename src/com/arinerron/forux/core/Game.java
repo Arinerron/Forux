@@ -37,7 +37,6 @@ public final class Game { // Game.java
                 Game.this.getEventHandler().onGameStop();
             }
         }));
-        
     }
     
     public synchronized void start() {

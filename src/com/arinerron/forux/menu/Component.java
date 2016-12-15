@@ -8,8 +8,7 @@ import com.arinerron.forux.core.Screen;
 import com.arinerron.forux.core.Window;
 import com.arinerron.forux.screens.MenuScreen;
 
-public class Component /* extends Screen */ { // TODO: Add color changing
-                                              // support!
+public class Component { // TODO: Add color changing support!
     private MenuScreen screen = null;
     
     private int id = -1;
@@ -179,8 +178,9 @@ public class Component /* extends Screen */ { // TODO: Add color changing
             this.setWidth(buttonWidth);
             this.setHeight(buttonHeight);
         } catch (Exception e) {
+            
             System.err.println(
-                    "Try add this Component to the Screen first. Blame this error on @mysterywave, he wanted it to be like this :P");
+                    "Please add the Component to the Screen before calling the autoPosition function. Blame this error on @mysterywave, he wanted it to be like this :P");
             e.printStackTrace();
         }
     }
@@ -189,32 +189,13 @@ public class Component /* extends Screen */ { // TODO: Add color changing
     
     public void onKeyRelease(KeyEvent e) {}
     
-    public void onDraw(Graphics g) {
-        
-    }
+    public void onDraw(Graphics g) {}
     
-    public void onMouseDown(int x2, int y2) {
-        // TODO Auto-generated method stub
-        
-    }
+    public void onMouseDown(int x2, int y2) {}
     
-    public void onMouseUp(int x2, int y2) {
-        // TODO Auto-generated method stub
-        
-    }
+    public void onMouseUp(int x2, int y2) {}
     
-    public void onMouseMotion(int x2, int y2) {
-        // TODO Auto-generated method stub
-        
-    }
+    public void onMouseMotion(int x2, int y2) {}}
     
-    public void onStart() {
-        // TODO Auto-generated method stub
-        
-    }
-    
-    public void onStop() {
-        // TODO Auto-generated method stub
-        
-    }
+    public void onStop() {}
 }

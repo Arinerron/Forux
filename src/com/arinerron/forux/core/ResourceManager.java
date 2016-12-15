@@ -6,8 +6,6 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Scanner;
 
 import javax.imageio.ImageIO;
@@ -30,7 +28,7 @@ public class ResourceManager {
         this.config = new File(home, "config.json");
         this.screenshots = new File(home, "screenshots");
         this.logs = new File(home, "logs");
-        this.log = new File(logs, new SimpleDateFormat("MM-dd-yyyy_HH-mm-ss").format(Calendar.getInstance().getTime()) + ".txt");
+        this.log = new File(logs, "log_" + this.getGame().getClock().getTimestamp() + ".txt");
         this.resources = new File(home, "resources");
         this.images = new File(this.resources, "images");
         this.audio = new File(this.resources, "audio");
@@ -79,6 +77,16 @@ public class ResourceManager {
         PrintWriter writer = new PrintWriter(file, "UTF-8");
         writer.println(contents + "");
         writer.close();
+    }
+    
+    public void writeImage(File file, BufferedImage image) { // should throw Exception like above method?
+        check();
+        
+        try {
+            ImageIO.write(image, "jpg", file);
+        } catch(Exception e) {
+            this.getGame().getLogger().error(e);
+        }
     }
     
     public void appendFile(File file, Object contents) throws IOException {
@@ -134,6 +142,7 @@ public class ResourceManager {
         try {
             return ImageIO.read(new File(this.getImageResourceFolder(), filename));
         } catch (IOException e) {
+            this.getGame().getLogger().error(e);
             return null;
         }
     }

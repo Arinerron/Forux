@@ -4,6 +4,8 @@ import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 public class Clock {
     private Game game = null;
@@ -48,6 +50,10 @@ public class Clock {
         g.dispose();
         
         this.getWindow().setImage(image);
+    }
+    
+    public String getTimestamp() {
+        return new SimpleDateFormat("MM-dd-yyyy_HH-mm-ss").format(Calendar.getInstance().getTime());
     }
     
     public Game getGame() {

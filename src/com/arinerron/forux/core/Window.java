@@ -11,6 +11,7 @@ import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
+import java.io.File;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -230,6 +231,12 @@ public class Window {
             }
         
         return false;
+    }
+    
+    public String screenshot() {
+        File file = new File(this.getGame().getResourceManager().getScreenshotsFolder(), "screenshot_" + this.getGame().getClock().getTimestamp());
+        this.getGame().getResourceManager().writeImage(file, this.getImage());
+        return file.getAbsolutePath();
     }
     
     public BufferedImage getIcon() {
