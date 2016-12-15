@@ -59,9 +59,9 @@ public class EventHandler {
             eventListener.onGameStop();
     }
 
-    public void onGameError() {
+    public void onGameError(String error) {
         for(EventListener eventListener : this.getEventListeners())
-            eventListener.onGameStop();
+            eventListener.onGameError(error);
     }
 
     public void onScreenSet(Screen screen) {

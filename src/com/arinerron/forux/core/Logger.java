@@ -50,6 +50,7 @@ public class Logger {
     public void error(Exception e) {
         log("ERROR", e.toString());
         e.printStackTrace();
+        this.getGame().getEventHandler().onGameError(e.toString());
     }
 
     public void setLoggerType(int type) {
