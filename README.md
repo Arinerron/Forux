@@ -64,6 +64,7 @@ Game game = clock.getGame(); // get Game instance
 int ticks = clock.getTicks(); // get total ticks
 int index = clock.getIndex(); // get tick count when screen changed
 int tickssinceindex = clock.getTicksSinceIndex(); // get ticks since last index
+String timestamp = clock.getTimestamp(); // get the file-friendly timestamp
 Window window = clock.getWindow(); // get Window instance
 ```
 
