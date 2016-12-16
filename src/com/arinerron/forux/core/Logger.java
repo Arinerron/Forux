@@ -60,14 +60,10 @@ public class Logger {
     }
 
     public void printProperties() {
-        Properties p = System.getProperties();
-        Enumeration keys = p.keys();
-        while (keys.hasMoreElements()) {
-            String key = (String)keys.nextElement();
-            String value = (String)p.get(key);
-            info(key + ": " + value);
-        }
+        String[] properties = {"os.name", "os.version", "os.arch", "java.version", "java.vendor"};
 
+        for(String s : properties)
+            this.info("System.getProperty\"" + s + "\") == " + System.getProperty(s));
     }
 
     public Game getGame() {
