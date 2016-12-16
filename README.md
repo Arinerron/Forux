@@ -27,7 +27,8 @@ EventHandler handler = game.getEventHandler(); // returns EventHandler instance
 Settings settings = game.getSettings(); // returns Settings instance
 Logger logger = game.getLogger(); // returns Logger instance
 ResourceManager resourcemanager = game.getResourceManager(); // returns ResourceManager instance
-SoundManager soundmanager game.getSoundManager(); // returns SoundManager instance
+SoundManager soundmanager = game.getSoundManager(); // returns SoundManager instance
+KeyManager keymanager = game.getKeyManager(); // returns KeyManager instance
 ```
 
 ## Window.java

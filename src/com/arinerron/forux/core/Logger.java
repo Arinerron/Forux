@@ -3,6 +3,8 @@ package com.arinerron.forux.core;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Enumeration;
+import java.util.Properties;
 
 public class Logger {
     public static int PRINT_TO_CONSOLE = 0;
@@ -55,6 +57,17 @@ public class Logger {
 
     public void setLoggerType(int type) {
         this.type = type;
+    }
+
+    public void printProperties() {
+        Properties p = System.getProperties();
+        Enumeration keys = p.keys();
+        while (keys.hasMoreElements()) {
+            String key = (String)keys.nextElement();
+            String value = (String)p.get(key);
+            info(key + ": " + value);
+        }
+
     }
 
     public Game getGame() {
