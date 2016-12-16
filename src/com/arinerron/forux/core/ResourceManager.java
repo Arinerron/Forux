@@ -22,8 +22,6 @@ public class ResourceManager {
     private File images = null;
     private File audio = null;
 
-    private boolean working = false;
-
     protected ResourceManager(Game game) {
         this.game = game;
         this.home = new File(new File(System.getProperty("user.home")), "." + this.getGame().getFileName());
@@ -47,7 +45,7 @@ public class ResourceManager {
             if(!home.exists())
                 this.getGame().setFirstRun(true);
             home.mkdirs();
-            if(!config.exists() && !working)
+            if(!config.exists())
                 writeFile(config, "{}");
             screenshots.mkdirs();
             logs.mkdirs();
@@ -61,9 +59,15 @@ public class ResourceManager {
     }
 
     public String readFile(File file) throws IOException {
-        working = true;
-        check();
-        working = false;
+        if(!home.exists())
+            this.getGame().setFirstRun(true);
+        home.mkdirs();
+        screenshots.mkdirs();
+        logs.mkdirs();
+        log.createNewFile();
+        resources.mkdirs();
+        images.mkdirs();
+        audio.mkdirs();
 
         if(!file.exists())
             file.createNewFile();
