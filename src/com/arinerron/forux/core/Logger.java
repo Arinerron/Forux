@@ -67,7 +67,7 @@ public class Logger {
         String[] properties = {"os.name", "os.version", "os.arch", "java.version", "java.vendor"};
 
         for(String s : properties)
-            this.info("System.getProperty\"" + s + "\") == " + System.getProperty(s));
+            this.info("System.getProperty\"" + s + "\") == \"" + System.getProperty(s) + "\"");
     }
 
     public Game getGame() {

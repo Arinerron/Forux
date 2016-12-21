@@ -206,7 +206,7 @@ public class Window {
     protected void setImage(BufferedImage image) {
         boolean update = this.getImage() != image;
         this.image = image;
-
+        
         if (update && this.getGame().isRunning()) // should it repaint, or did the image not change?
             panel.repaint();
     }

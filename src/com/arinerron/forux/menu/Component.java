@@ -136,6 +136,7 @@ public class Component { // TODO: Add color changing support!
         return this.getMenuScreen().getWindow();
     }
 
+    public double height_count = 17.5; // i don't know how to implement this as of now.
     public void autoPosition(int type, int id) {
 
         /*
@@ -159,7 +160,7 @@ public class Component { // TODO: Add color changing support!
                 buttonWidth = (buttonWidth / 2) - (paddingY / 2);
             if (type == Component.RIGHT)
                 fx = (buttonWidth) + (paddingY * 4);
-            int buttonHeight = (int) (this.getWindow().getImageSize().getHeight() / 17.5);
+            int buttonHeight = (int) (this.getWindow().getImageSize().getHeight() / height_count);
 
             int ys = paddingY;
             for(int d = 0; d < id + 1; d++) {
