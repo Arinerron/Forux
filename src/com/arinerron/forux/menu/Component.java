@@ -197,5 +197,7 @@ public class Component { // TODO: Add color changing support!
 
     public void onMouseMotion(int x2, int y2) {}
 
+    public void onStart() {}
+
     public void onStop() {}
 }
