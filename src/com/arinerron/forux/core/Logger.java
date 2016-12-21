@@ -45,6 +45,10 @@ public class Logger {
         log("WARN", o);
     }
 
+    public void debug(Object o) {
+        log("DEBUG", o);
+    }
+
     public void error(Object o) {
         log("ERROR", o);
     }
