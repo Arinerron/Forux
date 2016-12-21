@@ -120,6 +120,7 @@ logger.setType(int type); // valid values are Logger.PRINT_TO_CONSOLE, Logger.PR
 logger.log(String type, Object message); // log any type of message
 logger.info(Object message); // log an info message
 logger.warn(Object message); // log a warning message
+logger.debug(Object message); // log a debug message
 logger.error(Object message); // log an error message
 logger.error(Exception exception); // log an exception
 
