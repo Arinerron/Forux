@@ -190,3 +190,42 @@ boolean pressed2 = keymanager.isKeyPressed(int key); // is key pressed (by int)?
 List<Integer> buttons = keymanager.getPressedMouseButtons(); // returns List of mouse buttons that are pressed
 boolean pressed3 = keymanager.isMouseButtonPressed(int button); // is mouse button pressed? (1=left 2=middle 3=right mouse button)
 ```
+
+# Examples
+```
+EventListener listener = new EventListener() {
+    public void onGameStart() {
+        // this code runs when the game starts
+    }
+
+    public void onGameStop() {
+        // this code runs when the game stops
+    }
+
+    public void onGameError(String message) {
+        // this code runs when an error in the game occurs
+    }
+
+    public void onScreenSet(Screen screen) {
+        // this code runs whenever a new screen is set
+    }
+
+    public void onTick(int tick) {
+        // this code runs every tick
+    }
+
+    public void onIndex(int index) {
+        // this code runs every index
+    }
+
+    public void onKeyPress(KeyEvent event) {
+        // this code runs whenever a key is pressed
+    }
+
+    public void onKeyRelease(KeyEvent event) {
+        // this code runs whenever a key is released
+    }
+}
+
+game.getEventHandler.registerListener(listener); // register the listener
+```

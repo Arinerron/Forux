@@ -168,7 +168,7 @@ public class Component { // TODO: Add color changing support!
                     ys += paddingY;
                     ys += buttonHeight;
                 } else {
-                    // i dunno why thisi s empty and I can't remember.
+                    // i dunno why this is empty and I can't remember.
                 }
             }
 
