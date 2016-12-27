@@ -132,6 +132,10 @@ public class Window {
         this.currentScreen = 0; // black screen
     }
 
+
+    /**
+     * Recalculates the size for the image and other details
+     */
     private void recalculate() {
         this.width = (int) this.getSize().getWidth();
         this.height = (int) this.getSize().getHeight();
@@ -150,10 +154,22 @@ public class Window {
         }
     }
 
+
+    /**
+     * Gets Game instance
+     *
+     * @return the Game instance
+     * @see Game
+     */
     public Game getGame() {
         return this.game;
     }
 
+    /**
+     * Sets the Window's icon
+     *
+     * @param image the image to set the icon to
+     */
     public void setIcon(BufferedImage image) {
         try {
             frame.setIconImage(image);
@@ -206,11 +222,19 @@ public class Window {
     protected void setImage(BufferedImage image) {
         boolean update = this.getImage() != image;
         this.image = image;
-        
+
         if (update && this.getGame().isRunning()) // should it repaint, or did the image not change?
             panel.repaint();
     }
 
+    /**
+     * Adds a Screen to the Window
+     * <br>
+     * To get the Screen's ID, call the getID() function in the {@link Screen} class
+     *
+     * @return whether or not the Screen was added
+     * @see Screen
+     */
     public boolean addScreen(Screen screen) {
         if (!this.getScreens().contains(screen)) {
             screen.setID(this.getScreens().size());
@@ -275,6 +299,11 @@ public class Window {
         return false;
     }
 
+    /**
+     * Takes a screenshot of the Window and saves it to file.
+     *
+     * @return the absolute path to the screenshot file
+     */
     public String screenshot() {
         File file = new File(this.getGame().getResourceManager().getScreenshotsFolder(), "screenshot_" + this.getGame().getClock().getTimestamp());
         this.getGame().getResourceManager().writeImage(file, this.getImage());

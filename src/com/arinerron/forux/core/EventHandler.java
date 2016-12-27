@@ -15,14 +15,32 @@ public class EventHandler {
         this.game = game;
     }
 
+    /**
+     * Gets the Game instance
+     *
+     * @returns the Game instance
+     */
     public Game getGame() {
         return this.game;
     }
 
+    /**
+     * Gets a list of all of the EventListeners
+     *
+     * @return a List of EventListeners
+     */
     public List<EventListener> getEventListeners() {
         return this.eventListeners;
     }
 
+    /**
+     * Registers an EventListener
+     * <br>
+     * If the EventListener has previously been registered, it will not reregister.
+     * 
+     * @param eventListener the EventListener to register
+     * @return whether or not the EventListener was registered
+     */
     public boolean registerListener(EventListener eventListener) {
         if (!this.getEventListeners().contains(eventListener))
             this.eventListeners.add(eventListener);
@@ -31,6 +49,14 @@ public class EventHandler {
         return true;
     }
 
+    /**
+     * Unregisters an EventListener
+     * <br>
+     * If the EventListener wasn't registered, it will not unregister.
+     *
+     * @param eventListener the EventListener to unregister
+     * @return whether or not the EventListener was unregistered
+     */
     public boolean unregisterListener(EventListener eventListener) {
         if (this.getEventListeners().contains(eventListener))
             this.eventListeners.remove(eventListener);
@@ -39,10 +65,19 @@ public class EventHandler {
         return true;
     }
 
+    /**
+     * Unregistes all EventListeners
+     */
     public void unregisterAll() {
         this.eventListeners.clear();
     }
 
+    /**
+     * Has the EventListener previously been registered?
+     *
+     * @param eventListener the EventListener to check
+     * @return whether or not the EventListener is registered
+     */
     public boolean isRegistered(EventListener eventListener) {
         return this.getEventListeners().contains(eventListener);
     }
