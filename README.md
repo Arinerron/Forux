@@ -4,7 +4,7 @@
 An in-development, simple, lightweight 2D game library.
 
 # Error Checking
-Before pushing to this repository, please check for errors in your code. You can do that by executing `sh script.sh` in the root directory in the repository. This will trigger a fake compile that will report errors (if any) to the console.
+Before pushing to this repository, please check for errors in your code. You can do that by executing `sh syntax.sh` in the root directory in the repository. This will trigger a fake compile that will report errors (if any) to the console.
 
 # Documentation
 ## Game.java
