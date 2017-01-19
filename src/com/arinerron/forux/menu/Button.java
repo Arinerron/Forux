@@ -23,16 +23,14 @@ public class Button extends Component {
         }
     };
 
-    public Button() {
-        this.setText("Change my text!");
+    public Button(String s) {
+        this.setText(s);
+        this.setWidth(s.length() * 6 - 1 + 20);
+        this.setHeight(7 + 20);
     }
 
     @Override
-    public void onDraw(Graphics g2) {
-        int stroke = this.hasFocus() ? 2 : 1;
-        BufferedImage image = new BufferedImage((int) (this.getWidth() + (stroke * 17.5)),
-                this.getHeight() + (stroke * 2), BufferedImage.TYPE_INT_ARGB);
-        Graphics2D g = (Graphics2D) image.getGraphics();
+    public void onDraw(Graphics g) {
         if (this.isEnabled())
             if (!this.hasFocus())
                 g.setColor(Color.LIGHT_GRAY);
@@ -42,19 +40,7 @@ public class Button extends Component {
                 g.setColor(Color.DARK_GRAY);
         else
             g.setColor(Color.GRAY);
-        RoundRectangle2D roundedRectangle = new RoundRectangle2D.Float(0, 0, this.getWidth(), this.getHeight(), 10, 10);
-        g.fill(roundedRectangle);
-        g.setColor(Color.BLACK);
-        g.setStroke(new BasicStroke(stroke));
-        g.draw(roundedRectangle);
-
-        g.setColor(Color.BLACK);
-
-        try {
-            g.setFont(g.getFont().deriveFont(this.getHeight()));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        g.fillRect(this.getX(), this.getY(), this.getWidth(), this.getHeight());
 
         /*
          * Hey! If you're here because you're trying to figure
@@ -65,11 +51,9 @@ public class Button extends Component {
          * The problem is coming from the lines below.
          */
 
-        g.drawString(this.getText(),
-                this.getX() + 3 + (this.getWidth() / 2 - g.getFontMetrics().stringWidth(this.getText()) / 2),
-                -2 + (int) (this.getY()
-                        + ((double) (this.getHeight() / 2) + (double) (g.getFontMetrics().getHeight() / 2))));
-        g2.drawImage(image, this.getX(), this.getY(), null);
+        g.setColor(Color.WHITE);
+
+        drawText(g, this.getX() + (this.getWidth() - (this.getText().length() * 6 - 1)) / 2, this.getY() + (this.getHeight() - 7) / 2);
     }
 
     @Override
